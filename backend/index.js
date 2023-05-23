@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { db } = require("./db/db");
 const { readdirSync } = require("fs");
-const { route } = require("./routes/money.router");
+const { route } = require("./routes/transaction.router");
 const app = express();
 
 require("dotenv").config();
