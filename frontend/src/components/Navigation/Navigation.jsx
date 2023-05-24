@@ -5,24 +5,31 @@ import { MenuItems } from "../../utils/MenuItem";
 
 const Navigation = () => {
   return (
-    <div>
-      <img src={avatar} />
-      <div>
-        <h1>Haruka</h1>
-        <h2>Your Money</h2>
-      </div>
-      <ul>
-        {MenuItems.map((item) => {
-          return (
-            <li key={item.id}>
-              {item.icon}
-              <span>{item.title}</span>
-            </li>
-          );
-        })}
-      </ul>
-      <div>
-        <li>{signout}Sign Out</li>
+    <div className="p-8 w-96 h-full bg-opacity-75 bg-white border-3 border-white backdrop-blur-lg rounded-xl flex flex-col justify-between gap-8">
+      <div className="h-100 flex items-center gap-4">
+        <img
+          src={avatar}
+          className="w-20 h-20 rounded-full bg-pink-100 border-2 border-white p-1 shadow-sm"
+        />
+        <div>
+          <h2 className="text-rgba-34-34-96">Haruka</h2>
+          <p className="text-rgba-34-34-96-60">Your Money</p>
+        </div>
+        <ul className="flex flex-col h-full">
+          {MenuItems.map((item) => {
+            return (
+              <li
+                className="grid grid-cols-2 items-center my-1 font-medium cursor-pointer transition-all duration-400 text-rgba-34-34-96-60 pl-4 relative"
+                key={item.id}>
+                {item.icon}
+                <span>{item.title}</span>
+              </li>
+            );
+          })}
+        </ul>
+        <div>
+          <li>{signout}Sign Out</li>
+        </div>
       </div>
     </div>
   );
