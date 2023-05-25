@@ -12,24 +12,24 @@ const Navigation = () => {
           className="w-20 h-20 rounded-full bg-pink-100 border-2 border-white p-1 shadow-sm"
         />
         <div>
-          <h2 className="text-rgba-34-34-96">Haruka</h2>
+          <h1 className="text-rgba-34-34-96 font-bold">HARUKA</h1>
           <p className="text-rgba-34-34-96-60">Your Money</p>
         </div>
-        <ul className="flex flex-col h-full">
-          {MenuItems.map((item) => {
-            return (
-              <li
-                className="grid grid-cols-2 items-center my-1 font-medium cursor-pointer transition-all duration-400 text-rgba-34-34-96-60 pl-4 relative"
-                key={item.id}>
-                {item.icon}
-                <span>{item.title}</span>
-              </li>
-            );
-          })}
-        </ul>
-        <div>
-          <li>{signout}Sign Out</li>
-        </div>
+      </div>
+      <ul className="flex flex-col h-full">
+        {MenuItems.map((item) => {
+          return (
+            <li
+              className="items-center my-1 font-medium cursor-pointer transition-all duration-400 text-rgba-34-34-96-60 pl-4 relative"
+              key={item.id}>
+              {item.icon}
+              <span className="ml-4">{item.title}</span>
+            </li>
+          );
+        })}
+      </ul>
+      <div>
+        <li>{signout}Sign Out</li>
       </div>
     </div>
   );
