@@ -1,7 +1,11 @@
 import React from "react";
 
 const Expenses = () => {
-  return <div>Expenses</div>;
+  return (
+    <div>
+      <InnerLayout></InnerLayout>
+    </div>
+  );
 };
 
 export default Expenses;

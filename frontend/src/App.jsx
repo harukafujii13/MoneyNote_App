@@ -4,9 +4,13 @@ import MainLayout from "./styles/MainLayout";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Incomes from "./components/Incomes/Incomes";
 import Expenses from "./components/Expenses/Expenses";
+import { useGlobalContext } from "./context/globalContext";
 
 function App() {
   const [active, setActive] = useState(1);
+
+  const global = useGlobalContext();
+  console.log(global);
 
   const displayData = () => {
     switch (active) {

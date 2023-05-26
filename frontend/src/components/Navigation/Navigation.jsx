@@ -26,7 +26,7 @@ const Navigation = ({ active, setActive }) => {
               onClick={() => setActive(item.id)}
               className={`items-center my-1 font-medium cursor-pointer transition-all duration-400  pl-4 relative ${
                 active === item.id
-                  ? "text-primary-color2 font-semibold"
+                  ? "text-primary-color font-semibold"
                   : "text-primary-color2 opacity-80"
               }`}>
               {active === item.id && (
