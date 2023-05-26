@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
-import { useState } from "react";
-import { useContext } from "react";
 
 const BASE_URL = "http://localhost:8000/api/v1/";
 

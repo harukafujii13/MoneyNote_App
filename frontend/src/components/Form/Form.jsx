@@ -24,8 +24,10 @@ const Form = () => {
     addIncome(inputState);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="input-control">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-8">
+      <div className="input-control input w-full">
         <input
           type="text"
           value={title}
