@@ -68,7 +68,6 @@ const Form = () => {
       <div className="selects input-control flex justify-end">
         <select
           className="font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color"
-          // className="font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color placeholder:text-opacity-40 text-opacity-40 focus:text-opacity-100 active:text-opacity-100"
           required
           value={category}
           name="category"
@@ -101,14 +100,14 @@ const Form = () => {
           rows="4"
           onChange={handleInput("description")}></textarea>
       </div>
-      <div className="submit shadow-sm hover:bg-green-500">
+      <div className="submit-btn">
         <Button
-          name={"Add Income"}
+          name="Add Income"
           icon={plus}
-          bPad={"py-2 px-4"}
-          bRad={"rounded-full"}
-          bg={"bg-lime-500"}
-          color={"text-white"}
+          bPad="py-2 px-4"
+          bRad="rounded-full"
+          bg="bg-orange-400"
+          color="text-white"
         />
       </div>
     </form>
