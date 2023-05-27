@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from "../../context/globalContext";
+import Button from "../Button/Button";
+import { plus } from "../../utils/Icons";
 
 const Form = () => {
   const { addIncome } = useGlobalContext();
@@ -23,12 +25,14 @@ const Form = () => {
     event.preventDefault();
     addIncome(inputState);
   };
+
   return (
     <form
       onSubmit={handleSubmit}
       className="flex flex-col gap-8">
-      <div className="input-control input w-full">
+      <div className="input-control">
         <input
+          className="w-full font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color placeholder:text-primary-color/40"
           type="text"
           value={title}
           name={"title"}
@@ -39,6 +43,7 @@ const Form = () => {
 
       <div className="input-control">
         <input
+          className="w-full font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color placeholder:text-primary-color/40"
           type="text"
           value={amount}
           name={"amount"}
@@ -49,8 +54,9 @@ const Form = () => {
 
       <div className="input-control">
         <DatePicker
+          className="w-full font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color placeholder:text-primary-color/40"
           id="date"
-          placeholderText="Enter A Date"
+          placeholderText="Date"
           selected={date}
           dateFormat="dd/MM/yyyy"
           onChange={(date) => {
@@ -59,17 +65,20 @@ const Form = () => {
         />
       </div>
 
-      <div className="selects input-control">
+      <div className="selects input-control flex justify-end">
         <select
+          className="font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color"
+          // className="font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color placeholder:text-opacity-40 text-opacity-40 focus:text-opacity-100 active:text-opacity-100"
           required
           value={category}
           name="category"
           id="category"
           onChange={handleInput("category")}>
           <option
+            className="text-primary-color/40"
             value=""
             disabled>
-            Select Option
+            Category
           </option>
           <option value="salary">Salary</option>
           <option value="freelancing">Freelancing</option>
@@ -77,22 +86,30 @@ const Form = () => {
           <option value="stocks">Stocks</option>
           <option value="bitcoin">Bitcoin</option>
           <option value="bank">Bank Transfer</option>
-          <option value="youtube">Subscription</option>
+          <option value="subscription">Subscription</option>
           <option value="other">Other</option>
         </select>
       </div>
       <div className="input-control">
         <textarea
+          className="font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color placeholder:text-primary-color/40"
           name="description"
           value={description}
-          placeholder="Add A Reference"
+          placeholder="Memo"
           id="description"
           cols="30"
           rows="4"
           onChange={handleInput("description")}></textarea>
       </div>
-      <div className="submit">
-        <button>Add Income</button>
+      <div className="submit shadow-sm hover:bg-green-500">
+        <Button
+          name={"Add Income"}
+          icon={plus}
+          bPad={"py-2 px-4"}
+          bRad={"rounded-full"}
+          bg={"bg-lime-500"}
+          color={"text-white"}
+        />
       </div>
     </form>
   );
