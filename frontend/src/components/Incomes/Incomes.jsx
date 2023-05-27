@@ -4,17 +4,19 @@ import InnerLayout from "../../styles/InnerLayout";
 import Form from "../Form/Form";
 
 const Incomes = () => {
-  const { addIncom } = useGlobalContext();
+  const { addIncom, incomes, getIncomes } = useGlobalContext();
   return (
-    <InnerLayout>
-      <h1>Incomes</h1>
-      <div className="income-content">
-        <div className="form-container">
-          <Form />
+    <div className="flex overflow-auto">
+      <InnerLayout>
+        <h1>Incomes</h1>
+        <div className="income-content">
+          <div className="form-container">
+            <Form />
+          </div>
+          <div className="incomes"></div>
         </div>
-        <div className="incomes"></div>
-      </div>
-    </InnerLayout>
+      </InnerLayout>
+    </div>
   );
 };
 
