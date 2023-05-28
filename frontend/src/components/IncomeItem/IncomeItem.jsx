@@ -36,21 +36,21 @@ const IncomeItem = ({
   const categoryIcon = () => {
     switch (category) {
       case "salary":
-        return <i className="text-2xl">{money}</i>;
+        return <i className="text-2xl text-primary-color">{money}</i>;
       case "freelancing":
-        return <i className="text-2xl">{freelance}</i>;
+        return <i className="text-2xl text-primary-color">{freelance}</i>;
       case "investments":
-        return <i className="text-2xl">{stocks}</i>;
+        return <i className="text-2xl text-primary-color">{stocks}</i>;
       case "stocks":
-        return <i className="text-2xl">{users}</i>;
+        return <i className="text-2xl text-primary-color">{users}</i>;
       case "bitcoin":
-        return <i className="text-2xl">{bitcoin}</i>;
+        return <i className="text-2xl text-primary-color">{bitcoin}</i>;
       case "bank":
-        return <i className="text-2xl">{card}</i>;
-      case "subscription":
-        return <i className="text-2xl">{yt}</i>;
+        return <i className="text-2xl text-primary-color">{card}</i>;
+      case "youtube":
+        return <i className="text-2xl text-primary-color">{yt}</i>;
       case "other":
-        return <i className="text-2xl">{piggy}</i>;
+        return <i className="text-2xl text-primary-color">{piggy}</i>;
       default:
         return "";
     }
@@ -59,21 +59,21 @@ const IncomeItem = ({
   const expenseCatIcon = () => {
     switch (category) {
       case "education":
-        return <i className="text-2xl">{book}</i>;
+        return <i className="text-2xl text-primary-color">{book}</i>;
       case "groceries":
-        return <i className="text-2xl">{food}</i>;
+        return <i className="text-2xl text-primary-color">{food}</i>;
       case "health":
-        return <i className="text-2xl">{medical}</i>;
+        return <i className="text-2xl text-primary-color">{medical}</i>;
       case "subscriptions":
-        return <i className="text-2xl">{tv}</i>;
+        return <i className="text-2xl text-primary-color">{tv}</i>;
       case "takeaways":
-        return <i className="text-2xl">{takeaway}</i>;
+        return <i className="text-2xl text-primary-color">{takeaway}</i>;
       case "clothing":
-        return <i className="text-2xl">{clothing}</i>;
+        return <i className="text-2xl text-primary-color">{clothing}</i>;
       case "travelling":
-        return <i className="text-2xl">{freelance}</i>;
+        return <i className="text-2xl text-primary-color">{freelance}</i>;
       case "other":
-        return <i className="text-2xl">{circle}</i>;
+        return <i className="text-2xl text-primary-color">{circle}</i>;
       default:
         return "";
     }
@@ -87,7 +87,7 @@ const IncomeItem = ({
         {type === "expense" ? expenseCatIcon() : categoryIcon()}
       </div>
       <div className="content flex-1 flex flex-col gap-1">
-        <h5 className="text-lg pl-8 relative">
+        <h5 className="text-lg pl-8 relative text-primary-color font-semibold ">
           <span className="absolute left-0 top-1/2 transform -translate-y-1/2 w-7 h-7 rounded-full bg-indicator">
             ⭐️
           </span>
@@ -96,7 +96,7 @@ const IncomeItem = ({
         <div className="inner-content flex justify-between items-center">
           <div className="text flex items-center gap-3">
             <p className="flex items-center gap-1.5 text-primary-color opacity-80">
-              {dollar} 45
+              {dollar} {amount}
             </p>
             <p className="flex items-center gap-1.5 text-primary-color opacity-80">
               {calender} {date}

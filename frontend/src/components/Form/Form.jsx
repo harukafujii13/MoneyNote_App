@@ -86,7 +86,7 @@ const Form = () => {
           <option value="stocks">Stocks</option>
           <option value="bitcoin">Bitcoin</option>
           <option value="bank">Bank Transfer</option>
-          <option value="subscription">Subscription</option>
+          <option value="youtube">Youtube</option>
           <option value="other">Other</option>
         </select>
       </div>

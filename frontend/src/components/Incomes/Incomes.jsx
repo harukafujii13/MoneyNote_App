@@ -6,14 +6,21 @@ import Form from "../Form/Form";
 import IncomeItem from "../IncomeItem/IncomeItem";
 
 const Incomes = () => {
-  const { addIncom, incomes, getIncomes, deleteIncome } = useGlobalContext();
+  const { addIncom, incomes, getIncomes, deleteIncome, totalIncome } =
+    useGlobalContext();
   useEffect(() => {
     getIncomes();
   }, []);
   return (
     <div className="flex overflow-auto">
       <InnerLayout>
-        <h1>Incomes</h1>
+        <h1 className="text-primary-color font-semibold text-3xl">Incomes</h1>
+        <h2 className="flex items-center justify-center bg-FCF6F9 border-2 border-white shadow-md rounded-lg py-4 my-6 text-2xl text-primary-color font-semibold">
+          Total Income:
+          <span className="text-pink-400 text-3xl font-semibold ml-1">
+            ${totalIncome()}
+          </span>
+        </h2>
         <div className="income-content flex gap-8">
           <div className="form-container">
             <Form />
