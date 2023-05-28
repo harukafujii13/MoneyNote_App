@@ -6,7 +6,7 @@ import Form from "../Form/Form";
 import IncomeItem from "../IncomeItem/IncomeItem";
 
 const Incomes = () => {
-  const { addIncom, incomes, getIncomes } = useGlobalContext();
+  const { addIncom, incomes, getIncomes, deleteIncome } = useGlobalContext();
   useEffect(() => {
     getIncomes();
   }, []);
@@ -14,11 +14,11 @@ const Incomes = () => {
     <div className="flex overflow-auto">
       <InnerLayout>
         <h1>Incomes</h1>
-        <div className="income-content">
+        <div className="income-content flex gap-8">
           <div className="form-container">
             <Form />
           </div>
-          <div className="incomes">
+          <div className="incomes flex-1">
             {incomes.map((income) => {
               const { _id, title, amount, date, category, description, type } =
                 income;
@@ -33,6 +33,7 @@ const Incomes = () => {
                   type={type}
                   category={category}
                   indicatorColor="color-green"
+                  deleteItem={deleteIncome}
                 />
               );
             })}
