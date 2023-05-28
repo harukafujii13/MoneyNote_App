@@ -21,6 +21,7 @@ import {
   users,
   yt,
 } from "../../utils/Icons";
+import { dateFormat } from "../../utils/dateFormat";
 
 const IncomeItem = ({
   id,
@@ -99,7 +100,7 @@ const IncomeItem = ({
               {dollar} {amount}
             </p>
             <p className="flex items-center gap-1.5 text-primary-color opacity-80">
-              {calender} {date}
+              {calender} {dateFormat(date)}
             </p>
             <p className="flex items-center gap-1.5 text-primary-color opacity-80">
               {comments}

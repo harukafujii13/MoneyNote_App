@@ -33,7 +33,7 @@ function App() {
           active={active}
           setActive={setActive}
         />
-        <main className="flex-1 bg-opacity-75 bg-white border-3 border-white backdrop-blur-4.5 rounded-2xl overflow-x-hidden">
+        <main className="flex-1 bg-opacity-75 bg-white border-3 border-white backdrop-blur-4.5 rounded-2xl overflow-x-hidden scrollbar-width-none">
           {displayData()}
         </main>
       </MainLayout>
