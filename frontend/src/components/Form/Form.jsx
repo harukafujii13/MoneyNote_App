@@ -24,7 +24,13 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     addIncome(inputState);
-    getIncomes();
+    setInputState({
+      title: "",
+      amount: "",
+      date: "",
+      category: "",
+      description: "",
+    });
   };
 
   return (
