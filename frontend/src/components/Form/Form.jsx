@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 import { plus } from "../../utils/Icons";
 
 const Form = () => {
-  const { addIncome, getIncomes } = useGlobalContext();
+  const { addIncome, getIncomes, error, setError } = useGlobalContext();
   const [inputState, setInputState] = useState({
     title: "",
     amount: "",
@@ -17,6 +17,7 @@ const Form = () => {
 
   const handleInput = (name) => (event) => {
     setInputState({ ...inputState, [name]: event.target.value });
+    setError("");
   };
 
   const { title, amount, date, category, description } = inputState;
@@ -37,6 +38,7 @@ const Form = () => {
     <form
       onSubmit={handleSubmit}
       className="flex flex-col gap-8">
+      {error && <p className="error text-red-500 animate-shake">{error}</p>}
       <div className="input-control">
         <input
           className="w-full font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color placeholder:text-primary-color/40"

@@ -10,19 +10,18 @@ const History = () => {
       <h2>Recent History</h2>
       {history.map((item) => {
         const { _id, title, amount, type } = item;
-        const textColor =
-          type === "expense" ? "text-red-400" : "text-green-400";
-        const formattedAmount =
-          type === "expense"
-            ? `-${Math.max(amount, 0)}`
-            : `+${Math.max(amount, 0)}`;
+        const textColor = type === "expense" ? "text-red-400" : "text-lime-400";
 
         return (
           <div
             key={_id}
-            className="bg-pink-50 border-2 border-white shadow-md p-4 rounded-lg flex justify-between items-center">
+            className="bg-FCF6F9 border-2 border-white shadow-md p-4 rounded-lg flex justify-between items-center">
             <p className={`font-medium ${textColor}`}>{title}</p>
-            <p className={`font-medium ${textColor}`}>{formattedAmount}</p>
+            <p className={textColor}>
+              {type === "expense"
+                ? `-${amount <= 0 ? 0 : amount}`
+                : `+${amount <= 0 ? 0 : amount}`}
+            </p>
           </div>
         );
       })}
