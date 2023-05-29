@@ -62,7 +62,7 @@ const Chart = () => {
   };
 
   return (
-    <div className="bg-[#FCF6F9] border-[2px] border-white shadow-[0px 1px 15px rgba(0, 0, 0, 0.06)] p-4 rounded-[20px] h-full">
+    <div className="bg-FCF6F9 border-2 border-white shadow-sm p-4 rounded-2xl h-full">
       <Line data={data} />
     </div>
   );
