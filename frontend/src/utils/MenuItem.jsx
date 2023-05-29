@@ -2,9 +2,9 @@ import { dashboard, expenses, transactions, trend } from "../utils/Icons";
 export const MenuItems = [
   {
     id: 1,
-    title: "Dashboard",
+    title: "Home",
     icon: dashboard,
-    link: "/dashboard",
+    link: "/home",
   },
   {
     id: 2,
