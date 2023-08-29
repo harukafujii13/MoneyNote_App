@@ -14,7 +14,7 @@ function App() {
   console.log(global);
 
   return (
-    <div className="h-screen bg-gradient-to-r from-orange-200 to-pink-200 bg-opacity-60">
+    <div className="h-screen bg-primary-columbiaBlue text-primary-gunmetal">
       <BrowserRouter>
         <MainLayout>
           <Navigation />

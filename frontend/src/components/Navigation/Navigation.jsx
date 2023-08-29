@@ -1,36 +1,44 @@
 import React from 'react';
-import avatar from '../../assets/avatar.png';
-import { signout } from '../../utils/Icons';
-import { MenuItems } from '../../utils/MenuItem';
-import { Link } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import { BiUserCircle } from 'react-icons/bi';
 
-const Navigation = ({ active, setActive }) => {
+const Navigation = () => {
+  const location = useLocation();
+  const isActive = (path) => location.pathname === path;
+
   return (
-    <nav className="p-8 w-96 h-full bg-opacity-75 bg-white border-3 border-white backdrop-blur-lg rounded-xl flex flex-col justify-between gap-8">
-      <div className="h-100 flex items-center gap-4">
-        <img
-          src={avatar}
-          className="w-20 h-20 rounded-full bg-pink-100 border-2 border-white p-1 shadow-sm"
-        />
-        <div>
-          <h1 className="text-primary-color font-bold">HARUKA</h1>
-          <p className="text-primary-color2">Your Money</p>
-        </div>
+    <nav className="p-8 w-56 h-full bg-opacity-75 bg-white border-3 border-white backdrop-blur-lg rounded-xl flex flex-col justify-start items-center font-nunito">
+      <div className="flex flex-row justify-center items-center">
+        <p className="text-7xl mr-2">
+          <BiUserCircle />
+        </p>
+        <div className="text-2xl font-bold">Haruka</div>
       </div>
-      <ul className="flex flex-col h-full">
+      <ul className="flex flex-col h-[30rem] gap-5 text-xl font-semibold justify-center">
         <li>
-          <Link to="/home">Home</Link>
+          <NavLink
+            to="/home"
+            className={isActive('/home') ? 'text-[#1F7A8C]' : ''}>
+            Home
+          </NavLink>
         </li>
         <li>
-          <Link to="/income">Income</Link>
+          <NavLink
+            to="/income"
+            className={isActive('/income') ? 'text-[#1F7A8C]' : ''}>
+            Incomes
+          </NavLink>
         </li>
         <li>
-          <Link to="/expense">Expense</Link>
+          <NavLink
+            to="/expense"
+            className={isActive('/expense') ? 'text-[#1F7A8C]' : ''}>
+            Expenses
+          </NavLink>
         </li>
-      </ul>
-      <ul className="flex flex-row">
-        <li>{signout}</li>
-        <li className="ml-2">Sign Out</li>
+        <li>
+          <p>Sign Out</p>
+        </li>
       </ul>
     </nav>
   );
