@@ -1,7 +1,8 @@
-import React from "react";
-import avatar from "../../assets/avatar.png";
-import { signout } from "../../utils/Icons";
-import { MenuItems } from "../../utils/MenuItem";
+import React from 'react';
+import avatar from '../../assets/avatar.png';
+import { signout } from '../../utils/Icons';
+import { MenuItems } from '../../utils/MenuItem';
+import { Link } from 'react-router-dom';
 
 const Navigation = ({ active, setActive }) => {
   return (
@@ -17,24 +18,15 @@ const Navigation = ({ active, setActive }) => {
         </div>
       </div>
       <ul className="flex flex-col h-full">
-        {MenuItems.map((item) => {
-          return (
-            <li
-              key={item.id}
-              onClick={() => setActive(item.id)}
-              className={`items-center my-1 font-medium cursor-pointer transition-all duration-400  pl-4 relative ${
-                active === item.id
-                  ? "text-primary-color font-semibold"
-                  : "text-primary-color2 opacity-80"
-              }`}>
-              {active === item.id && (
-                <div className="absolute left-0 top-0 w-1 bg-primary-color h-full rounded-r-md" />
-              )}
-              <span>{item.icon}</span>
-              <span className="ml-4">{item.title}</span>
-            </li>
-          );
-        })}
+        <li>
+          <Link to="/home">Home</Link>
+        </li>
+        <li>
+          <Link to="/income">Income</Link>
+        </li>
+        <li>
+          <Link to="/expense">Expense</Link>
+        </li>
       </ul>
       <ul className="flex flex-row">
         <li>{signout}</li>

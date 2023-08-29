@@ -1,5 +1,5 @@
-import React from "react";
-import { useGlobalContext } from "../context/globalContext";
+import React from 'react';
+import { useGlobalContext } from '../../context/globalContext';
 
 const History = () => {
   const { transactionHistory } = useGlobalContext();
@@ -10,7 +10,7 @@ const History = () => {
       <h2>Recent History</h2>
       {history.map((item) => {
         const { _id, title, amount, type } = item;
-        const textColor = type === "expense" ? "text-red-400" : "text-lime-400";
+        const textColor = type === 'expense' ? 'text-red-400' : 'text-lime-400';
 
         return (
           <div
@@ -18,7 +18,7 @@ const History = () => {
             className="bg-FCF6F9 border-2 border-white shadow-md p-4 rounded-lg flex justify-between items-center">
             <p className={`font-medium ${textColor}`}>{title}</p>
             <p className={textColor}>
-              {type === "expense"
+              {type === 'expense'
                 ? `-${amount <= 0 ? 0 : amount}`
                 : `+${amount <= 0 ? 0 : amount}`}
             </p>
