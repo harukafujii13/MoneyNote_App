@@ -11,14 +11,13 @@ import SignupPage from './pages/SignupPage/SignupPage';
 
 function App() {
   const global = useGlobalContext();
-  console.log(global);
 
   return (
     <div className="h-screen bg-primary-columbiaBlue text-primary-gunmetal font-nunito">
       <BrowserRouter>
         <MainLayout>
           <Navigation />
-          <main className="flex-1 bg-opacity-75 bg-white border-3 border-white backdrop-blur-4.5 rounded-2xl overflow-x-hidden scrollbar-width-none">
+          <main className="flex-1 bg-opacity-75 bg-white border-3 border-white backdrop-blur-4.5 rounded-2xl">
             <Routes>
               <Route
                 path="/register"
