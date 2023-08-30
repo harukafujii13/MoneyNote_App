@@ -18,28 +18,30 @@ function App() {
       <BrowserRouter>
         <MainLayout>
           <Navigation />
-          <Routes>
-            <Route
-              path="/register"
-              element={<SignupPage />}
-            />
-            <Route
-              path="/login"
-              element={<LoginPage />}
-            />
-            <Route
-              path="/home"
-              element={<HomePage />}
-            />
-            <Route
-              path="/income"
-              element={<IncomePage />}
-            />
-            <Route
-              path="/expense"
-              element={<ExpensePage />}
-            />
-          </Routes>
+          <main className="flex-1 bg-opacity-75 bg-white border-3 border-white backdrop-blur-4.5 rounded-2xl overflow-x-hidden scrollbar-width-none">
+            <Routes>
+              <Route
+                path="/register"
+                element={<SignupPage />}
+              />
+              <Route
+                path="/login"
+                element={<LoginPage />}
+              />
+              <Route
+                path="/home"
+                element={<HomePage />}
+              />
+              <Route
+                path="/income"
+                element={<IncomePage />}
+              />
+              <Route
+                path="/expense"
+                element={<ExpensePage />}
+              />
+            </Routes>
+          </main>
         </MainLayout>
       </BrowserRouter>
     </div>
