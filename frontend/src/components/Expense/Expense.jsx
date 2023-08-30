@@ -1,9 +1,9 @@
-import React from "react";
-import { useEffect } from "react";
-import { useGlobalContext } from "../../context/globalContext";
-import InnerLayout from "../../styles/InnerLayout";
-import IncomeItem from "../IncomeItem/IncomeItem";
-import ExpenseForm from "./ExpenseForm";
+import React from 'react';
+import { useEffect } from 'react';
+import { useGlobalContext } from '../../context/globalContext';
+import InnerLayout from '../../styles/InnerLayout';
+import IncomeItem from '../CardItem/CardItem';
+import ExpenseForm from './ExpenseForm';
 
 const Expenses = () => {
   const { addIncom, expenses, getExpenses, deleteExpense, totalExpenses } =

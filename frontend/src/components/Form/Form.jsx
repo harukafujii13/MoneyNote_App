@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { useGlobalContext } from "../../context/globalContext";
-import Button from "../Button/Button";
-import { plus } from "../../utils/Icons";
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { useGlobalContext } from '../../context/globalContext';
+import Button from '../Button/Button';
+import { plus } from '../../utils/Icons';
 
 const Form = () => {
   const { addIncome, getIncomes, error, setError } = useGlobalContext();
   const [inputState, setInputState] = useState({
-    title: "",
-    amount: "",
-    date: "",
-    category: "",
-    description: "",
+    title: '',
+    amount: '',
+    date: '',
+    category: '',
+    description: '',
   });
 
   const handleInput = (name) => (event) => {
     setInputState({ ...inputState, [name]: event.target.value });
-    setError("");
+    setError('');
   };
 
   const { title, amount, date, category, description } = inputState;
@@ -26,44 +26,44 @@ const Form = () => {
     event.preventDefault();
     addIncome(inputState);
     setInputState({
-      title: "",
-      amount: "",
-      date: "",
-      category: "",
-      description: "",
+      title: '',
+      amount: '',
+      date: '',
+      category: '',
+      description: '',
     });
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-8">
+      className="flex flex-col gap-6">
       {error && <p className="error text-red-500 animate-shake">{error}</p>}
       <div className="input-control">
         <input
-          className="w-full font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color placeholder:text-primary-color/40"
+          className="w-full outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm placeholder:text-primary-gunmetal/40"
           type="text"
           value={title}
-          name={"title"}
-          placeholder="Salary Title"
-          onChange={handleInput("title")}
+          name={'title'}
+          placeholder="Income Title"
+          onChange={handleInput('title')}
         />
       </div>
 
       <div className="input-control">
         <input
-          className="w-full font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color placeholder:text-primary-color/40"
+          className="w-full outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm  placeholder:text-primary-gunmetal/40"
           type="text"
           value={amount}
-          name={"amount"}
-          placeholder="Salary Amount"
-          onChange={handleInput("amount")}
+          name={'amount'}
+          placeholder="Income Amount"
+          onChange={handleInput('amount')}
         />
       </div>
 
       <div className="input-control">
         <DatePicker
-          className="w-full font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color placeholder:text-primary-color/40"
+          className="w-full outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm placeholder:text-primary-gunmetal/40"
           id="date"
           placeholderText="Date"
           selected={date}
@@ -76,12 +76,12 @@ const Form = () => {
 
       <div className="selects input-control flex justify-end">
         <select
-          className="font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color"
+          className="outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm"
           required
           value={category}
           name="category"
           id="category"
-          onChange={handleInput("category")}>
+          onChange={handleInput('category')}>
           <option
             className="text-primary-color/40"
             value=""
@@ -100,22 +100,22 @@ const Form = () => {
       </div>
       <div className="input-control">
         <textarea
-          className="font-inherit outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm text-primary-color placeholder:text-primary-color/40"
+          className="outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm  placeholder:text-primary-gunmetal/40"
           name="description"
           value={description}
           placeholder="Memo"
           id="description"
           cols="30"
           rows="4"
-          onChange={handleInput("description")}></textarea>
+          onChange={handleInput('description')}></textarea>
       </div>
-      <div className="submit-btn">
+      <div className="submit-btn flex justify-center">
         <Button
           name="Add Income"
           icon={plus}
           bPad="py-2 px-4"
           bRad="rounded-full"
-          bg="bg-orange-400"
+          bg="bg-primary-teal"
           color="text-white"
         />
       </div>

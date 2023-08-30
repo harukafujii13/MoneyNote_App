@@ -1,9 +1,9 @@
-import React from "react";
-import { useEffect } from "react";
-import { useGlobalContext } from "../../context/globalContext";
-import InnerLayout from "../../styles/InnerLayout";
-import Form from "../Form/Form";
-import IncomeItem from "../IncomeItem/IncomeItem";
+import React from 'react';
+import { useEffect } from 'react';
+import { useGlobalContext } from '../../context/globalContext';
+import InnerLayout from '../../styles/InnerLayout';
+import Form from '../Form/Form';
+import CardItem from '../CardItem/CardItem';
 
 const Incomes = () => {
   const { addIncom, incomes, getIncomes, deleteIncome, totalIncome } =
@@ -14,15 +14,15 @@ const Incomes = () => {
   return (
     <div className="flex overflow-auto">
       <InnerLayout>
-        <h1 className="text-primary-color font-semibold text-3xl">Incomes</h1>
-        <h2 className="flex items-center justify-center bg-FCF6F9 border-2 border-white shadow-md rounded-lg py-4 my-6 text-2xl text-primary-color font-semibold">
-          Total Income:
-          <span className="text-pink-400 text-3xl font-semibold ml-1">
-            ${totalIncome()}
-          </span>
-        </h2>
-        <div className="income-content flex gap-8">
-          <div className="form-container">
+        <div className="font-semibold text-3xl">Incomes</div>
+        <div className="flex items-center justify-center">
+          <div className="flex flex-row items-center justify-center font-semibold gap-2 w-[40rem] border-2 border-white shadow-md rounded-lg py-4 my-6">
+            <div className="text-2xl">Total Income:</div>
+            <p className="text-primary-pink text-3xl">${totalIncome()}</p>
+          </div>
+        </div>
+        <div className="flex flex-row gap-8">
+          <div className="flex items-start">
             <Form />
           </div>
           <div className="incomes flex-1">
@@ -30,7 +30,7 @@ const Incomes = () => {
               const { _id, title, amount, date, category, description, type } =
                 income;
               return (
-                <IncomeItem
+                <CardItem
                   key={_id}
                   id={_id}
                   title={title}
