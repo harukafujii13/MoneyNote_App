@@ -5,7 +5,7 @@ import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
 
-const Form = () => {
+const IncomeForm = () => {
   const { addIncome, getIncomes, error, setError } = useGlobalContext();
   const [inputState, setInputState] = useState({
     title: '',
@@ -38,7 +38,11 @@ const Form = () => {
     <form
       onSubmit={handleSubmit}
       className="flex flex-col gap-6">
-      {error && <p className="error text-red-500 animate-shake">{error}</p>}
+      {error && (
+        <p className="error text-red-500 animate-shake keyframes:shake">
+          {error}
+        </p>
+      )}
       <div className="input-control">
         <input
           className="w-full outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm placeholder:text-primary-gunmetal/40"
@@ -123,4 +127,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default IncomeForm;

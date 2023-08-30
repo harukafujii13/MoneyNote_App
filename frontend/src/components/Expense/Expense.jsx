@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useGlobalContext } from '../../context/globalContext';
 import InnerLayout from '../../styles/InnerLayout';
 import IncomeItem from '../CardItem/CardItem';
-import ExpenseForm from './ExpenseForm';
+import ExpenseForm from '../Form/ExpenseForm';
 
 const Expenses = () => {
   const { addIncom, expenses, getExpenses, deleteExpense, totalExpenses } =
@@ -14,15 +14,15 @@ const Expenses = () => {
   return (
     <div className="flex overflow-auto">
       <InnerLayout>
-        <h1 className="text-primary-color font-semibold text-3xl">Expenses</h1>
-        <h2 className="flex items-center justify-center bg-FCF6F9 border-2 border-white shadow-md rounded-lg py-4 my-6 text-2xl text-primary-color font-semibold">
-          Total Expense:
-          <span className="text-pink-400 text-3xl font-semibold ml-1">
-            ${totalExpenses()}
-          </span>
-        </h2>
-        <div className="income-content flex gap-8">
-          <div className="form-container">
+        <div className="font-semibold text-3xl">Expenses</div>
+        <div className="flex items-center justify-center">
+          <div className="flex flex-row items-center justify-center font-semibold gap-2 w-[40rem] border-2 border-white shadow-md rounded-lg py-4 my-6">
+            <div className="text-2xl">Total Expense:</div>
+            <p className="text-primary-pink text-3xl">${totalExpenses()}</p>
+          </div>
+        </div>
+        <div className="flex flex-row gap-8">
+          <div className="flex items-start">
             <ExpenseForm />
           </div>
           <div className="incomes flex-1">

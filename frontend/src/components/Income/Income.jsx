@@ -2,8 +2,8 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useGlobalContext } from '../../context/globalContext';
 import InnerLayout from '../../styles/InnerLayout';
-import Form from '../Form/Form';
 import CardItem from '../CardItem/CardItem';
+import IncomeForm from '../Form/IncomeForm';
 
 const Incomes = () => {
   const { addIncom, incomes, getIncomes, deleteIncome, totalIncome } =
@@ -23,7 +23,7 @@ const Incomes = () => {
         </div>
         <div className="flex flex-row gap-8">
           <div className="flex items-start">
-            <Form />
+            <IncomeForm />
           </div>
           <div className="incomes flex-1">
             {incomes.map((income) => {
