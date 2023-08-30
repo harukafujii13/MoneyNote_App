@@ -17,7 +17,7 @@ function App() {
       <BrowserRouter>
         <MainLayout>
           <Navigation />
-          <main className="flex-1 bg-opacity-75 bg-white border-3 border-white backdrop-blur-4.5 rounded-2xl">
+          <main className="flex-1 bg-opacity-75 bg-white border-3 border-white backdrop-blur-4.5 rounded-2xl overflow-auto">
             <Routes>
               <Route
                 path="/register"
