@@ -5,7 +5,7 @@ import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
 
-const IncomeForm = () => {
+const IncomeForm = ({ setShowModal }) => {
   const { addIncome, getIncomes, error, setError } = useGlobalContext();
   const [inputState, setInputState] = useState({
     title: '',
@@ -32,12 +32,14 @@ const IncomeForm = () => {
       category: '',
       description: '',
     });
+
+    setShowModal(false);
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-6">
+      className="flex flex-col gap-4">
       {error && (
         <p className="error text-red-500 animate-shake keyframes:shake">
           {error}
@@ -104,7 +106,7 @@ const IncomeForm = () => {
       </div>
       <div>
         <textarea
-          className="outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm  placeholder:text-primary-gunmetal/40"
+          className="outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm  placeholder:text-primary-gunmetal/40 w-full"
           name="description"
           value={description}
           placeholder="Memo"
