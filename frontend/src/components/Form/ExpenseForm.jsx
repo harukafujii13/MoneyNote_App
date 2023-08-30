@@ -39,7 +39,7 @@ const ExpenseForm = ({ setShowModal }) => {
     }
 
     // If validation passed, reset the state and add income
-    addIncome(inputState);
+    addExpense(inputState);
     setInputState({
       title: '',
       amount: '',

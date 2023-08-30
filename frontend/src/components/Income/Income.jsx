@@ -58,7 +58,7 @@ const Incomes = () => {
 
         <div className="flex flex-row gap-8 justify-center">
           <div>
-            {incomes.map((income) => {
+            {[...incomes].reverse().map((income) => {
               const { _id, title, amount, date, category, description, type } =
                 income;
               return (
