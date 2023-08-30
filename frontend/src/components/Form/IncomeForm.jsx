@@ -24,6 +24,21 @@ const IncomeForm = ({ setShowModal }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // Simple validation to check if any field is empty
+    if (!title || !amount || !date || !category || !description) {
+      setError('All fields must be filled out!');
+      return;
+    }
+
+    // Additional validation can go here
+    // For example, checking if 'amount' is a number
+    if (isNaN(Number(amount))) {
+      setError('Amount must be a number!');
+      return;
+    }
+
+    // If validation passed, reset the state and add income
     addIncome(inputState);
     setInputState({
       title: '',
@@ -41,7 +56,7 @@ const IncomeForm = ({ setShowModal }) => {
       onSubmit={handleSubmit}
       className="flex flex-col gap-4">
       {error && (
-        <p className="error text-red-500 animate-shake keyframes:shake">
+        <p className="text-red-500 text-semibold text-base  animate-shake keyframes:shake flex justify-center">
           {error}
         </p>
       )}
