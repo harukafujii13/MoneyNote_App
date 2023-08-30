@@ -56,8 +56,8 @@ const Incomes = () => {
           </div>
         )}
 
-        <div className="flex flex-row gap-8">
-          <div className="incomes flex-1">
+        <div className="flex flex-row gap-8 justify-center">
+          <div>
             {incomes.map((income) => {
               const { _id, title, amount, date, category, description, type } =
                 income;

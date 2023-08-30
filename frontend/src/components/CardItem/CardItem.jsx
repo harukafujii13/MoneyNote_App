@@ -83,7 +83,7 @@ const CardItem = ({
 
   return (
     <div
-      className="border-2 border-white shadow-lg rounded-lg p-4 mb-4 flex items-center gap-4 w-full"
+      className="border-2 border-white shadow-lg rounded-lg p-4 mb-4 flex items-center gap-4 w-[55rem]"
       indicator={indicatorColor}>
       <div className="w-20 h-20 rounded-lg border-2 border-white flex items-center justify-center">
         {type === 'expense' ? expenseCatIcon() : categoryIcon()}
