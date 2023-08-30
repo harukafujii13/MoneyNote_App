@@ -78,7 +78,7 @@ const IncomeForm = () => {
         />
       </div>
 
-      <div className="selects input-control flex justify-end">
+      <div className="input-control flex justify-end">
         <select
           className="outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm"
           required
@@ -87,7 +87,7 @@ const IncomeForm = () => {
           id="category"
           onChange={handleInput('category')}>
           <option
-            className="text-primary-color/40"
+            className=""
             value=""
             disabled>
             Category
@@ -102,7 +102,7 @@ const IncomeForm = () => {
           <option value="other">Other</option>
         </select>
       </div>
-      <div className="input-control">
+      <div>
         <textarea
           className="outline-none rounded-md border-2 p-2 border-white bg-white resize-none shadow-sm  placeholder:text-primary-gunmetal/40"
           name="description"
