@@ -14,7 +14,7 @@ function App() {
   console.log(global);
 
   return (
-    <div className="h-screen bg-primary-columbiaBlue text-primary-gunmetal">
+    <div className="h-screen bg-primary-columbiaBlue text-primary-gunmetal font-nunito">
       <BrowserRouter>
         <MainLayout>
           <Navigation />
