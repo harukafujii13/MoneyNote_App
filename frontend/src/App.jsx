@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import MainLayout from './styles/MainLayout';
 import { useGlobalContext } from './context/globalContext';
@@ -9,42 +9,61 @@ import IncomePage from './pages/IncomePage/IncomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 
+function ProtectedLayout() {
+  return (
+    <MainLayout>
+      <Navigation />
+      <main className="flex-1 bg-opacity-75 bg-white border-3 border-white backdrop-blur-4.5 rounded-2xl overflow-auto">
+        <Outlet />
+      </main>
+    </MainLayout>
+  );
+}
+
 function App() {
   const global = useGlobalContext();
 
   return (
     <div className="h-screen bg-primary-columbiaBlue text-primary-gunmetal font-nunito">
       <BrowserRouter>
-        <MainLayout>
-          <Navigation />
-          <main className="flex-1 bg-opacity-75 bg-white border-3 border-white backdrop-blur-4.5 rounded-2xl overflow-auto">
-            <Routes>
-              <Route
-                path="/register"
-                element={<SignupPage />}
-              />
-              <Route
-                path="/login"
-                element={<LoginPage />}
-              />
-              <Route
-                path="/home"
-                element={<HomePage />}
-              />
-              <Route
-                path="/income"
-                element={<IncomePage />}
-              />
-              <Route
-                path="/expense"
-                element={<ExpensePage />}
-              />
-            </Routes>
-          </main>
-        </MainLayout>
+        <Routes>
+          <Route
+            path="/register"
+            element={<SignupPage />}
+          />
+          <Route
+            path="/login"
+            element={<LoginPage />}
+          />
+          <Route
+            path="/"
+            element={<ProtectedLayout />}>
+            <Route
+              index
+              element={<HomePage />}
+            />
+            <Route
+              path="home"
+              element={<HomePage />}
+            />
+            <Route
+              path="income"
+              element={<IncomePage />}
+            />
+            <Route
+              path="expense"
+              element={<ExpensePage />}
+            />
+          </Route>
+        </Routes>
       </BrowserRouter>
     </div>
   );
 }
 
 export default App;
+
+//index for the HomePage route, meaning it would be the default page when navigating to the root ("/").
+
+//HomePage, IncomePage, and ExpensePage are nested routes under the ProtectedLayout,
+//which includes both MainLayout and Navigation.
