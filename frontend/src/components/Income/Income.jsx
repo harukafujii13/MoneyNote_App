@@ -25,7 +25,7 @@ const Incomes = () => {
 
         <div className="flex lg:flex-row md:flex-row flex-col items-center justify-center gap-4">
           <div className="flex flex-row items-center justify-center font-semibold gap-2 lg:w-[30rem] md:w-[20rem] w-[15rem] border-2 border-white shadow-md rounded-lg lg:py-4 md:py-4 py-2 lg:my-6 md:my-6 my-0">
-            <div className="lg:text-2xl md:text-xl text-sm">Total Income:</div>
+            <div className="lg:text-2xl md:text-xl text-sm">Total incomes:</div>
             <p className="text-primary-pink lg:text-3xl md:text-2xl text-xl">
               ${totalIncome()}
             </p>

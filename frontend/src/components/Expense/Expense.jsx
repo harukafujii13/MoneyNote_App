@@ -18,17 +18,23 @@ const Expenses = () => {
   return (
     <div className="flex overflow-auto">
       <InnerLayout>
-        <div className="font-semibold text-3xl">Expenses</div>
+        <div className="font-semibold text-3xl flex lg:justify-start md:justify-start justify-center lg:mb-0 md:mb-0 mb-4">
+          Expenses
+        </div>
 
-        <div className="flex items-center justify-center gap-4">
-          <div className="flex flex-row items-center justify-center font-semibold gap-2 w-[30rem] border-2 border-white shadow-md rounded-lg py-4 my-6">
-            <div className="text-2xl">Total Expense:</div>
-            <p className="text-primary-pink text-3xl">${totalExpenses()}</p>
+        <div className="flex lg:flex-row md:flex-row flex-col items-center justify-center gap-4">
+          <div className="flex flex-row items-center justify-center font-semibold gap-2 lg:w-[30rem] md:w-[20rem] w-[15rem] border-2 border-white shadow-md rounded-lg lg:py-4 md:py-4 py-2 lg:my-6 md:my-6 my-0">
+            <div className="lg:text-2xl md:text-xl text-sm">
+              Total Expenses:
+            </div>
+            <p className="text-primary-pink lg:text-3xl md:text-2xl text-xl">
+              ${totalExpenses()}
+            </p>
           </div>
           <Button
-            name="Add Income"
+            name="Add Expense"
             icon={plus}
-            bPad="py-2 px-4"
+            bPad="lg:py-2 lg:px-4 md:py-2 lg:px-2 py-2 px-4"
             bRad="rounded-full"
             bg="bg-primary-teal"
             color="text-white"
@@ -54,7 +60,7 @@ const Expenses = () => {
           </div>
         )}
 
-        <div className="flex flex-row gap-8 justify-center">
+        <div className="flex flex-row gap-8 justify-center lg:mt-0 md:mt-0 mt-4">
           <div>
             {[...expenses].reverse().map((income) => {
               const { _id, title, amount, date, category, description, type } =
