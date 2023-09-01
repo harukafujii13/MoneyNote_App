@@ -25,14 +25,13 @@ const ExpenseForm = ({ setShowModal }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Simple validation to check if any field is empty
+    // if any field is empty
     if (!title || !amount || !date || !category || !description) {
       setError('All fields must be filled out!');
       return;
     }
 
-    // Additional validation can go here
-    // For example, checking if 'amount' is a number
+    // checking if 'amount' is a number
     if (isNaN(Number(amount))) {
       setError('Amount must be a number!');
       return;
