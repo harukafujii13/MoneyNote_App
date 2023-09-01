@@ -46,20 +46,29 @@ export const GlobalProvider = ({ children }) => {
 
   // Edit and Update Income
   const editIncome = async (id, updatedIncome) => {
-    await axios
-      .put(`${BASE_URL}edit-income/${id}`, updatedIncome)
-      .catch((err) => {
-        setError(err.response.data.message);
-      });
-    getIncomes();
+    try {
+      const response = await axios.put(
+        `${BASE_URL}edit-income/${id}`,
+        updatedIncome
+      );
+      if (response.status === 200) {
+        setIncomes(
+          incomes.map((income) => (income._id === id ? updatedIncome : income))
+        );
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || err.message);
+    }
   };
 
   const getIncomeById = async (id) => {
     try {
       const response = await axios.get(`${BASE_URL}get-income/${id}`);
-      return response.data;
+      if (response.status === 200) {
+        return response.data;
+      }
     } catch (error) {
-      setError(error.message);
+      setError(error.response?.data?.message || error.message);
     }
   };
 
