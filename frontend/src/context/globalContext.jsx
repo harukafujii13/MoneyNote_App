@@ -52,6 +52,7 @@ export const GlobalProvider = ({ children }) => {
         updatedIncome
       );
       if (response.status === 200) {
+        console.log(response.data);
         setIncomes(
           incomes.map((income) => (income._id === id ? updatedIncome : income))
         );
@@ -65,6 +66,7 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await axios.get(`${BASE_URL}get-income/${id}`);
       if (response.status === 200) {
+        console.log(response.data);
         return response.data;
       }
     } catch (error) {

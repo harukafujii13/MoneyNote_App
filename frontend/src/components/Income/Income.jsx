@@ -8,10 +8,17 @@ import { plus } from '../../utils/Icons';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
 
 const Incomes = () => {
-  const { addIncome, incomes, getIncomes, deleteIncome, totalIncome } =
-    useGlobalContext();
+  const {
+    addIncome,
+    incomes,
+    getIncomes,
+    deleteIncome,
+    totalIncome,
+    getIncomeById,
+  } = useGlobalContext();
   const [showModal, setShowModal] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [formdata, setFormdata] = useState();
 
   useEffect(() => {
     getIncomes();
@@ -58,6 +65,7 @@ const Incomes = () => {
                 <IncomeForm
                   setShowModal={setShowModal}
                   isEditMode={isEditMode}
+                  formdata={formdata}
                 />
               </div>
             </div>
@@ -83,6 +91,8 @@ const Incomes = () => {
                   deleteItem={deleteIncome}
                   setShowModal={setShowModal}
                   setIsEditMode={setIsEditMode}
+                  getIncomeById={getIncomeById}
+                  setFormdata={setFormdata}
                 />
               );
             })}

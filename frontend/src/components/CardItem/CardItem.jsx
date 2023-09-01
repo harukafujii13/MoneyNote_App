@@ -37,6 +37,8 @@ const CardItem = ({
   type,
   setShowModal,
   setIsEditMode,
+  getIncomeById,
+  setFormdata,
 }) => {
   const categoryIcon = () => {
     switch (category) {
@@ -130,7 +132,10 @@ const CardItem = ({
                   color="text-white"
                   iColor="fill-white"
                   hColor="hover:bg-[#78D1E2]"
-                  onClick={() => {
+                  onClick={async () => {
+                    const data = await getIncomeById(id);
+                    console.log(data);
+                    setFormdata(data);
                     setIsEditMode(true);
                     setShowModal(true);
                   }}

@@ -5,14 +5,15 @@ import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
 
-const IncomeForm = ({ setShowModal, isEditMode }) => {
+const IncomeForm = ({ setShowModal, isEditMode, formdata }) => {
   const { addIncome, getIncomes, error, setError } = useGlobalContext();
+  console.log('//////', formdata);
   const [inputState, setInputState] = useState({
-    title: '',
-    amount: '',
-    date: '',
-    category: '',
-    description: '',
+    title: formdata.title ?? '',
+    amount: formdata.amount ?? '',
+    date: new Date(formdata.date) ?? new Date(),
+    category: formdata.category ?? '',
+    description: formdata.description ?? '',
   });
 
   const handleInput = (name) => (event) => {
