@@ -80,3 +80,20 @@ exports.editIncome = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+exports.getIncomeById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const income = await IncomeSchema.findById(id);
+
+    if (!income) {
+      return res.status(404).json({ message: 'Income not found!' });
+    }
+
+    res.status(200).json(income);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};

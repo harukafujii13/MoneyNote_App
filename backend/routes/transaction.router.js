@@ -3,6 +3,7 @@ const {
   getIncomes,
   deleteIncome,
   editIncome,
+  getIncomeById,
 } = require('../controllers/income.controller');
 
 const {
@@ -18,6 +19,8 @@ router
   .get('/get-incomes', getIncomes)
   .delete('/delete-income/:id', deleteIncome)
   .put('/edit-income/:id', editIncome)
+  .get('/get-income/:id', getIncomeById)
+
   .post('/add-expense', addExpense)
   .get('/get-expenses', getExpense)
   .delete('/delete-expense/:id', deleteExpense)
