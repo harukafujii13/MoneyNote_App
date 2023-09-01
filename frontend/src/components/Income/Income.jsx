@@ -18,7 +18,7 @@ const Incomes = () => {
   } = useGlobalContext();
   const [showModal, setShowModal] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [formdata, setFormdata] = useState();
+  const [formdata, setFormdata] = useState(null);
 
   useEffect(() => {
     getIncomes();
@@ -45,7 +45,11 @@ const Incomes = () => {
             bRad="rounded-full"
             bg="bg-primary-teal"
             color="text-white"
-            onClick={() => setShowModal(true)}
+            onClick={() => {
+              setShowModal(true);
+              setIsEditMode(false);
+              setFormdata(null);
+            }}
           />
         </div>
 
