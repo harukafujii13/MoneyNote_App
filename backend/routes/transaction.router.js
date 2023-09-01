@@ -2,21 +2,26 @@ const {
   addIncome,
   getIncomes,
   deleteIncome,
-} = require("../controllers/income.controller");
+  editIncome,
+} = require('../controllers/income.controller');
+
 const {
   addExpense,
   getExpense,
   deleteExpense,
-} = require("../controllers/expense.controller");
-const router = require("express").Router();
+  editExpense,
+} = require('../controllers/expense.controller');
+const router = require('express').Router();
 
 router
-  .post("/add-income", addIncome)
-  .get("/get-incomes", getIncomes)
-  .delete("/delete-income/:id", deleteIncome)
-  .post("/add-expense", addExpense)
-  .get("/get-expenses", getExpense)
-  .delete("/delete-expense/:id", deleteExpense);
+  .post('/add-income', addIncome)
+  .get('/get-incomes', getIncomes)
+  .delete('/delete-income/:id', deleteIncome)
+  .put('/edit-income/:id', editIncome)
+  .post('/add-expense', addExpense)
+  .get('/get-expenses', getExpense)
+  .delete('/delete-expense/:id', deleteExpense)
+  .put('/edit-expense/:id', editExpense);
 module.exports = router;
 
 //This code defines a POST route for the path "/add-income" using router.post().

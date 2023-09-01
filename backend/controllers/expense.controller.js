@@ -49,3 +49,37 @@ exports.deleteExpense = async (req, res) => {
       res.status(500).json({ message: 'Server Error' });
     });
 };
+
+// Edit an existing expense record
+exports.editExpense = async (req, res) => {
+  const { id } = req.params;
+  const { title, amount, category, description, date } = req.body;
+
+  try {
+    if (!title || !category || !description || !date) {
+      return res.status(400).json({ message: 'All fields are required!' });
+    }
+    if (amount <= 0 || !amount === 'number') {
+      return res
+        .status(400)
+        .json({ message: 'Amount must be a positive number!' });
+    }
+
+    const updatedExpense = await ExpenseSchema.findByIdAndUpdate(
+      id,
+      { title, amount, category, description, date },
+      { new: true }
+    );
+
+    if (!updatedExpense) {
+      return res.status(404).json({ message: 'Expense not found!' });
+    }
+
+    res
+      .status(200)
+      .json({ message: 'Expense Updated', expense: updatedExpense });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
