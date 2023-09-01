@@ -11,6 +11,7 @@ const Incomes = () => {
   const { addIncome, incomes, getIncomes, deleteIncome, totalIncome } =
     useGlobalContext();
   const [showModal, setShowModal] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   useEffect(() => {
     getIncomes();
@@ -54,7 +55,10 @@ const Incomes = () => {
                     <AiOutlineCloseSquare />
                   </p>
                 </div>
-                <IncomeForm setShowModal={setShowModal} />
+                <IncomeForm
+                  setShowModal={setShowModal}
+                  isEditMode={isEditMode}
+                />
               </div>
             </div>
           </div>
@@ -77,6 +81,8 @@ const Incomes = () => {
                   category={category}
                   indicatorColor="color-green"
                   deleteItem={deleteIncome}
+                  setShowModal={setShowModal}
+                  setIsEditMode={setIsEditMode}
                 />
               );
             })}

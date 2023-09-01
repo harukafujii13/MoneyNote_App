@@ -5,7 +5,7 @@ import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
 
-const IncomeForm = ({ setShowModal }) => {
+const IncomeForm = ({ setShowModal, isEditMode }) => {
   const { addIncome, getIncomes, error, setError } = useGlobalContext();
   const [inputState, setInputState] = useState({
     title: '',
@@ -132,7 +132,7 @@ const IncomeForm = ({ setShowModal }) => {
       </div>
       <div className="submit-btn flex justify-center">
         <Button
-          name="Add Income"
+          name={isEditMode ? 'Edit Income' : 'Add Income'}
           icon={plus}
           bPad="py-2 px-4"
           bRad="rounded-full"

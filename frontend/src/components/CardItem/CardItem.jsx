@@ -35,6 +35,8 @@ const CardItem = ({
   deleteItem,
   indicatorColor,
   type,
+  setShowModal,
+  setIsEditMode,
 }) => {
   const categoryIcon = () => {
     switch (category) {
@@ -128,6 +130,10 @@ const CardItem = ({
                   color="text-white"
                   iColor="fill-white"
                   hColor="hover:bg-[#78D1E2]"
+                  onClick={() => {
+                    setIsEditMode(true);
+                    setShowModal(true);
+                  }}
                 />
               </div>
               <div>
