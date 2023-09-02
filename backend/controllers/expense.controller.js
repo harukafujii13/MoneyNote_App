@@ -32,8 +32,8 @@ exports.addExpense = async (req, res) => {
 
 exports.getExpense = async (req, res) => {
   try {
-    const incomes = await ExpenseSchema.find().sort({ createdAt: -1 });
-    res.status(200).json(incomes);
+    const expenses = await ExpenseSchema.find().sort({ createdAt: -1 });
+    res.status(200).json(expenses);
   } catch (error) {
     res.status(500).json({ message: 'servaer Error' });
   }
@@ -78,6 +78,23 @@ exports.editExpense = async (req, res) => {
     res
       .status(200)
       .json({ message: 'Expense Updated', expense: updatedExpense });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+exports.getExpenseById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const expense = await ExpenseSchema.findById(id);
+
+    if (!expense) {
+      return res.status(404).json({ message: 'Expense not found!' });
+    }
+
+    res.status(200).json(expense);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Server Error' });

@@ -86,13 +86,36 @@ export const GlobalProvider = ({ children }) => {
     setExpenses(response.data);
   };
 
+  //Edit and Update Expense
   const editExpense = async (id, updatedExpense) => {
-    await axios
-      .put(`${BASE_URL}edit-expense/${id}`, updatedExpense)
-      .catch((err) => {
-        setError(err.response.data.message);
-      });
-    getExpenses();
+    try {
+      const response = await axios.put(
+        `${BASE_URL}edit-expense/${id}`,
+        updatedExpense
+      );
+      if (response.status === 200) {
+        console.log(response.data);
+        setExpenses(
+          expenses.map((expense) =>
+            expense._id === id ? updatedExpense : expense
+          )
+        );
+      }
+    } catch (error) {
+      setError(err.response?.data?.message || err.message);
+    }
+  };
+
+  const getExpensesById = async (id) => {
+    try {
+      const response = await axios.get(`${BASE_URL}get-expense/${id}`);
+      if (response.status === 200) {
+        console.log(response.data);
+        return response.data;
+      }
+    } catch (error) {
+      setError(error.response?.data?.message || error.message);
+    }
   };
 
   const deleteExpense = async (id) => {
@@ -131,6 +154,7 @@ export const GlobalProvider = ({ children }) => {
         expenses,
         deleteExpense,
         editExpense,
+        getExpensesById,
         totalExpenses,
         totalBalance,
         transactionHistory,
