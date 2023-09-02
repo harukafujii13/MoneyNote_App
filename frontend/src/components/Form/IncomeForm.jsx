@@ -6,43 +6,63 @@ import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
 
 const IncomeForm = ({ setShowModal, isEditMode, formdata }) => {
-  const { addIncome, getIncomes, error, setError } = useGlobalContext();
+  const { addIncome, editIncome, getIncomes, error, setError } =
+    useGlobalContext();
 
   console.log('//////', formdata);
 
   const [inputState, setInputState] = useState({
     title: formdata?.title ?? '',
-    amount: formdata?.amount ?? '',
+    amount: Number(formdata?.amount) ?? 0,
     date: new Date(formdata?.date ?? new Date()),
     category: formdata?.category ?? '',
     description: formdata?.description ?? '',
   });
 
+  // const handleInput = (name) => (event) => {
+  //   setInputState({ ...inputState, [name]: event.target.value });
+  //   setError('');
+  // };
+
   const handleInput = (name) => (event) => {
-    setInputState({ ...inputState, [name]: event.target.value });
+    let value = event.target.value;
+
+    if (name === 'amount') {
+      value = isNaN(Number(value)) ? 0 : Number(value);
+    }
+
+    setInputState({ ...inputState, [name]: value });
     setError('');
   };
 
   const { title, amount, date, category, description } = inputState;
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Simple validation to check if any field is empty
+    // to check if any field is empty
     if (!title || !amount || !date || !category || !description) {
       setError('All fields must be filled out!');
       return;
     }
 
-    // Additional validation can go here
-    // For example, checking if 'amount' is a number
+    //checking if 'amount' is a number
     if (isNaN(Number(amount))) {
       setError('Amount must be a number!');
       return;
     }
 
-    // If validation passed, reset the state and add income
-    addIncome(inputState);
+    if (isEditMode && formdata?._id) {
+      // Edit mode
+      try {
+        await editIncome(formdata._id, inputState);
+      } catch (err) {
+        console.error('Failed to edit income', err);
+      }
+    } else {
+      addIncome(inputState);
+    }
+
     setInputState({
       title: '',
       amount: '',
