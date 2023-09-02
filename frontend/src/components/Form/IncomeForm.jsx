@@ -6,8 +6,7 @@ import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
 
 const IncomeForm = ({ setShowModal, isEditMode, formdata }) => {
-  const { addIncome, editIncome, getIncomes, error, setError } =
-    useGlobalContext();
+  const { addIncome, editIncome, error, setError } = useGlobalContext();
 
   console.log('//////', formdata);
 

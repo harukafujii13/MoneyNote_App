@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobalContext } from '../../context/globalContext';
 import InnerLayout from '../../styles/InnerLayout';
-import CardItem from '../CardItem/CardItem';
 import IncomeForm from '../Form/IncomeForm';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
+import CardIncomeItem from '../CardItem/CardIncomeItem';
 
 const Incomes = () => {
-  const {
-    addIncome,
-    incomes,
-    getIncomes,
-    deleteIncome,
-    totalIncome,
-    getIncomeById,
-  } = useGlobalContext();
+  const { incomes, getIncomes, deleteIncome, totalIncome, getIncomeById } =
+    useGlobalContext();
   const [showModal, setShowModal] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [formdata, setFormdata] = useState(null);
@@ -82,7 +76,7 @@ const Incomes = () => {
               const { _id, title, amount, date, category, description, type } =
                 income;
               return (
-                <CardItem
+                <CardIncomeItem
                   key={_id}
                   id={_id}
                   title={title}

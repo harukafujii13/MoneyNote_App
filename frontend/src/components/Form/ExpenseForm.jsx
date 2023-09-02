@@ -5,40 +5,57 @@ import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
 
-const ExpenseForm = ({ setShowModal }) => {
-  const { addExpense, error, setError } = useGlobalContext();
+const ExpenseForm = ({ setShowModal, isEditMode, formdata }) => {
+  const { addExpense, error, setError, editExpense } = useGlobalContext();
+  console.log('//////', formdata);
+
   const [inputState, setInputState] = useState({
-    title: '',
-    amount: '',
-    date: '',
-    category: '',
-    description: '',
+    title: formdata?.title ?? '',
+    amount: Number(formdata?.amount) ?? 0,
+    date: new Date(formdata?.date ?? new Date()),
+    category: formdata?.category ?? '',
+    description: formdata?.description ?? '',
   });
 
   const handleInput = (name) => (event) => {
-    setInputState({ ...inputState, [name]: event.target.value });
-    setError();
+    let value = event.target.value;
+
+    if (name === 'amount') {
+      value = isNaN(Number(value)) ? 0 : Number(value);
+    }
+
+    setInputState({ ...inputState, [name]: value });
+    setError('');
   };
 
   const { title, amount, date, category, description } = inputState;
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // if any field is empty
+    // to check if any field is empty
     if (!title || !amount || !date || !category || !description) {
       setError('All fields must be filled out!');
       return;
     }
 
-    // checking if 'amount' is a number
+    //checking if 'amount' is a number
     if (isNaN(Number(amount))) {
       setError('Amount must be a number!');
       return;
     }
 
-    // If validation passed, reset the state and add income
-    addExpense(inputState);
+    if (isEditMode && formdata?._id) {
+      // Edit mode
+      try {
+        await editExpense(formdata._id, inputState);
+      } catch (err) {
+        console.error('Failed to edit income', err);
+      }
+    } else {
+      addExpense(inputState);
+    }
+
     setInputState({
       title: '',
       amount: '',
@@ -131,7 +148,7 @@ const ExpenseForm = ({ setShowModal }) => {
       </div>
       <div className="submit-btn flex justify-center">
         <Button
-          name="Add Expense"
+          name={isEditMode ? 'Edit Expense' : 'Add Expense'}
           icon={plus}
           bPad="py-2 px-4"
           bRad="rounded-full"

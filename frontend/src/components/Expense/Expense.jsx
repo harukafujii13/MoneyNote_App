@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobalContext } from '../../context/globalContext';
 import InnerLayout from '../../styles/InnerLayout';
-import IncomeItem from '../CardItem/CardItem';
 import ExpenseForm from '../Form/ExpenseForm';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
+import CardExpenseItem from '../CardItem/CardExpenseItem';
 
 const Expenses = () => {
-  const { addIncom, expenses, getExpenses, deleteExpense, totalExpenses } =
-    useGlobalContext();
+  const {
+    expenses,
+    getExpenses,
+    deleteExpense,
+    totalExpenses,
+    getExpensesById,
+  } = useGlobalContext();
   const [showModal, setShowModal] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [formdata, setFormdata] = useState(null);
 
   useEffect(() => {
     getExpenses();
   }, []);
+
   return (
     <div className="flex overflow-auto">
       <InnerLayout>
@@ -38,7 +46,11 @@ const Expenses = () => {
             bRad="rounded-full"
             bg="bg-primary-teal"
             color="text-white"
-            onClick={() => setShowModal(true)}
+            onClick={() => {
+              setShowModal(true);
+              setIsEditMode(false);
+              setFormdata(null);
+            }}
           />
         </div>
 
@@ -54,7 +66,11 @@ const Expenses = () => {
                     <AiOutlineCloseSquare />
                   </p>
                 </div>
-                <ExpenseForm setShowModal={setShowModal} />
+                <ExpenseForm
+                  setShowModal={setShowModal}
+                  isEditMode={isEditMode}
+                  formdata={formdata}
+                />
               </div>
             </div>
           </div>
@@ -62,11 +78,11 @@ const Expenses = () => {
 
         <div className="flex flex-row gap-8 justify-center lg:mt-0 md:mt-0 mt-4">
           <div>
-            {[...expenses].reverse().map((income) => {
+            {[...expenses].reverse().map((expense) => {
               const { _id, title, amount, date, category, description, type } =
-                income;
+                expense;
               return (
-                <IncomeItem
+                <CardExpenseItem
                   key={_id}
                   id={_id}
                   title={title}
@@ -77,6 +93,10 @@ const Expenses = () => {
                   category={category}
                   indicatorColor="color-green"
                   deleteItem={deleteExpense}
+                  setShowModal={setShowModal}
+                  setIsEditMode={setIsEditMode}
+                  getExpensesById={getExpensesById}
+                  setFormdata={setFormdata}
                 />
               );
             })}

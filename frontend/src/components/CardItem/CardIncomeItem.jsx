@@ -2,30 +2,23 @@ import React from 'react';
 import Button from '../Button/Button';
 import {
   bitcoin,
-  book,
   calender,
   card,
-  circle,
-  clothing,
   comments,
   dollar,
   edit,
-  food,
   freelance,
-  medical,
   money,
   piggy,
   stocks,
-  takeaway,
   trash,
-  tv,
   users,
   yt,
 } from '../../utils/Icons';
 import { dateFormat } from '../../utils/dateFormat';
 import { TbPigMoney } from 'react-icons/tb';
 
-const CardItem = ({
+const CardIncomeItem = ({
   id,
   title,
   amount,
@@ -63,35 +56,12 @@ const CardItem = ({
     }
   };
 
-  const expenseCatIcon = () => {
-    switch (category) {
-      case 'education':
-        return <i className="text-2xl">{book}</i>;
-      case 'groceries':
-        return <i className="text-2xl">{food}</i>;
-      case 'health':
-        return <i className="text-2xl">{medical}</i>;
-      case 'subscriptions':
-        return <i className="text-2xl">{tv}</i>;
-      case 'takeaways':
-        return <i className="text-2xl">{takeaway}</i>;
-      case 'clothing':
-        return <i className="text-2xl">{clothing}</i>;
-      case 'travelling':
-        return <i className="text-2xl">{freelance}</i>;
-      case 'other':
-        return <i className="text-2xl">{circle}</i>;
-      default:
-        return '';
-    }
-  };
-
   return (
     <div
       className="border-2 border-white shadow-lg rounded-lg p-2 md:p-4 lg:p-4 mb-4 flex items-center gap-2 md:gap-4 lg:gap-4 w-[18rem] md:w-[35rem] lg:w-[43rem]"
       indicator={indicatorColor}>
       <div className="w-20 h-20 rounded-lg border-2 border-white flex items-center justify-center">
-        {type === 'expense' ? expenseCatIcon() : categoryIcon()}
+        {categoryIcon()}
       </div>
       <div className="flex-1 flex flex-col gap-2">
         <div className="flex flex-row items-center lg:justify-start md:justify-start justify-center gap-1 md:gap-2 lg:gap-2">
@@ -161,4 +131,4 @@ const CardItem = ({
   );
 };
 
-export default CardItem;
+export default CardIncomeItem;
