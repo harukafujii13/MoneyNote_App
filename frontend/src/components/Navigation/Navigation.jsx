@@ -25,7 +25,7 @@ const Navigation = () => {
 
   return (
     <div>
-      <div className="hidden md:block p-8 w-56 h-full bg-opacity-75 bg-white border-3 border-white backdrop-blur-lg rounded-xl flex flex-col justify-start items-center font-nunito">
+      <div className="hidden md:flex flex-col w-56 h-full p-8 bg-opacity-75 bg-white border-3 border-white backdrop-blur-lg rounded-xl justify-start items-center font-nunito">
         <div className="flex flex-row justify-center items-center">
           <p className="text-7xl mr-2">
             <BiUserCircle />
@@ -64,7 +64,7 @@ const Navigation = () => {
 
       <div
         onClick={() => setShowMenu(true)}
-        className="w-6 h-5 flex flex-col justify-between items-center md:hidden text-4xl text-primary-gray cursor-pointer overflow-hidden">
+        className="md:hidden flex flex-col justify-between items-center w-6 h-5 text-4xl text-primary-gray cursor-pointer">
         <span className="w-full h-[2px] bg-black"></span>
         <span className="w-full h-[2px] bg-black"></span>
         <span className="w-full h-[2px] bg-black"></span>
@@ -73,8 +73,8 @@ const Navigation = () => {
         <div
           ref={ref}
           onClick={handleClick}
-          className="absolute md:hidden top-0 left-0 w-full h-screen bg-black bg-opacity-50 flex flex-col items-start">
-          <div className="md:w-2/5 sm:w-3/5 w-full h-full overflow-y-scroll scrollbarHide bg-white flex flex-col items-center px-4 py-10 relative">
+          className="absolute top-0 left-0 w-full h-screen bg-black bg-opacity-50 flex items-start md:hidden">
+          <div className="w-full h-full overflow-y-scroll scrollbarHide bg-white flex flex-col items-center px-4 py-10 relative md:w-2/5 sm:w-3/5">
             <MdOutlineClose
               onClick={() => setShowMenu(false)}
               className="text-4xl text-black cursor-pointer absolute top-4 right-4"
