@@ -7,25 +7,19 @@ import { useNavigate } from 'react-router-dom';
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    axios
-      .post('http://localhost:8000/login', { email, password })
-      .then((result) => {
-        console.log(result);
-        if (result.data === 'Success') {
-          navigate('/home');
-        }
-      });
+    console.log('submit');
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center text-primary-gunmetal">
       <div className="p-6 bg-white rounded-lg shadow-lg w-96 md:w-1/3 lg:w-1/4">
         <div className="text-2xl font-bold mb-4 flex justify-center">Login</div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={submitHandler}>
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -34,7 +28,7 @@ function LoginPage() {
             </label>
             <input
               type="email"
-              placeholder="Your email"
+              placeholder="Enter email"
               autoComplete="off"
               name="email"
               className="mt-1 p-2 w-full border rounded-md"
@@ -49,7 +43,7 @@ function LoginPage() {
             </label>
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Enter password"
               name="password"
               className="mt-1 p-2 w-full border rounded-md"
               onChange={(e) => setPassword(e.target.value)}

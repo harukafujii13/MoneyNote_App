@@ -8,14 +8,13 @@ const SignupPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    axios
-      .post('http://localhost:8000/register', { name, email, password })
-      .then((result) => console.log(result));
-    navigate('/login').catch((err) => console.log(err));
+    console.log('submit');
   };
 
   return (
@@ -24,7 +23,7 @@ const SignupPage = () => {
         <div className="text-2xl font-bold mb-4 flex justify-center">
           Register
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={submitHandler}>
           <div className="mb-4">
             <label
               htmlFor="name"
@@ -33,7 +32,7 @@ const SignupPage = () => {
             </label>
             <input
               type="text"
-              placeholder="Your name"
+              placeholder="Enter name"
               autoComplete="off"
               name="name"
               className="mt-1 p-2 w-full border rounded-md"
@@ -67,6 +66,20 @@ const SignupPage = () => {
               name="password"
               className="mt-1 p-2 w-full border rounded-md"
               onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="confirmPassword"
+              className="block text-sm font-medium">
+              Confirm password
+            </label>
+            <input
+              type="password"
+              placeholder="Confirm password"
+              name="confirmPassword"
+              className="mt-1 p-2 w-full border rounded-md"
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
           <button
