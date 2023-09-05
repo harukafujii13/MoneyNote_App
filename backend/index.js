@@ -1,27 +1,36 @@
-const express = require("express");
-const cors = require("cors");
-const { db } = require("./db/db");
-const { readdirSync } = require("fs");
-const { route } = require("./routes/transaction.router");
+const express = require('express');
+const cors = require('cors');
+const { db } = require('./db/db');
+const { readdirSync } = require('fs');
+const { route } = require('./routes/transaction.router');
 const app = express();
 
-require("dotenv").config();
+const userRoutes = require('./routes/user.router');
+const errorMiddleware = require('./middleware/errorMiddleware');
+const { notFound, errorHandler } = errorMiddleware;
+
+app.use('/api/users', userRoutes);
+app.use(notFound);
+app.use(errorHandler);
+
+require('dotenv').config();
 
 const PORT = process.env.PORT;
 
 //middlewares
 app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 
 //routes
-readdirSync("./routes").map((route) =>
-  app.use("/api/v1", require("./routes/" + route))
+readdirSync('./routes').map((route) =>
+  app.use('/api/v1', require('./routes/' + route))
 );
 
 const server = () => {
   db();
   app.listen(PORT, () => {
-    console.log("listening to port:", PORT);
+    console.log('listening to port:', PORT);
   });
 };
 
