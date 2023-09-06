@@ -12,7 +12,7 @@ const IncomeForm = ({ setShowModal, isEditMode, formdata }) => {
 
   const [inputState, setInputState] = useState({
     title: formdata?.title ?? '',
-    amount: Number(formdata?.amount) ?? 0,
+    amount: formdata?.amount ? Number(formdata.amount) : 0,
     date: new Date(formdata?.date ?? new Date()),
     category: formdata?.category ?? '',
     description: formdata?.description ?? '',
@@ -64,7 +64,7 @@ const IncomeForm = ({ setShowModal, isEditMode, formdata }) => {
 
     setInputState({
       title: '',
-      amount: '',
+      amount: 0,
       date: '',
       category: '',
       description: '',

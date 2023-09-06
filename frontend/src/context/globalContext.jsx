@@ -52,9 +52,17 @@ export const GlobalProvider = ({ children }) => {
         updatedIncome
       );
       if (response.status === 200) {
-        console.log(response.data);
-        setIncomes(
-          incomes.map((income) => (income._id === id ? updatedIncome : income))
+        setIncomes((prevState) =>
+          prevState.map((income) => {
+            if (income._id === id) {
+              return {
+                ...income,
+                ...response.data.income,
+              };
+            }
+
+            return income;
+          })
         );
       }
     } catch (err) {
