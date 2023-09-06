@@ -102,11 +102,17 @@ export const GlobalProvider = ({ children }) => {
         updatedExpense
       );
       if (response.status === 200) {
-        console.log(response.data);
-        setExpenses(
-          expenses.map((expense) =>
-            expense._id === id ? updatedExpense : expense
-          )
+        setExpenses((prevState) =>
+          prevState.map((expenses) => {
+            if (expenses._id === id) {
+              return {
+                ...expenses,
+                ...response.data.expense,
+              };
+            }
+
+            return expenses;
+          })
         );
       }
     } catch (error) {
