@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Loader from '../../components/Loader/Loader';
 import { setCredentials } from '../../slices/authSlice';
 import { useUpdateUserMutation } from '../../slices/usersApislice';
+import InnerLayout from '../../styles/InnerLayout';
 
 const ProfilePage = () => {
   const [name, setName] = useState('');
@@ -46,82 +47,90 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center text-primary-gunmetal">
-      <div className="p-6 bg-white rounded-lg shadow-lg w-96 md:w-1/3 lg:w-1/4">
-        <div className="text-2xl font-bold mb-4 flex justify-center">
-          Update Profile
+    <div>
+      <InnerLayout>
+        <div className="font-semibold text-3xl flex lg:justify-start md:justify-start justify-center lg:mb-0 md:mb-0 mb-4">
+          Profile
         </div>
-        <form onSubmit={submitHandler}>
-          <div className="mb-4">
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium">
-              Name
-            </label>
-            <input
-              type="text"
-              value={name}
-              placeholder="Enter name"
-              autoComplete="off"
-              name="name"
-              className="mt-1 p-2 w-full border rounded-md"
-              onChange={(e) => setName(e.target.value)}
-            />
+
+        <div className="flex items-center justify-center text-primary-gunmetal mt-[5.5rem]">
+          <div className="rounded-lg shadow-lg w-[20rem] md:w-[20rem] lg:w-[27rem] border-2 border-white p-2">
+            <div className="lg:text-2xl md:text-2xl text-xl font-bold mb-4 flex justify-center">
+              Update Profile
+            </div>
+            <form onSubmit={submitHandler}>
+              <div className="mb-4">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  value={name}
+                  placeholder="Enter name"
+                  autoComplete="off"
+                  name="name"
+                  className="mt-1 p-2 w-full border rounded-md"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  value={email}
+                  placeholder="Your email"
+                  autoComplete="off"
+                  name="email"
+                  className="mt-1 p-2 w-full border rounded-md"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  value={password}
+                  placeholder="Password"
+                  name="password"
+                  className="mt-1 p-2 w-full border rounded-md"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="confirmPassword"
+                  className="block text-sm font-medium">
+                  Confirm password
+                </label>
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  placeholder="Confirm password"
+                  name="confirmPassword"
+                  className="mt-1 p-2 w-full border rounded-md"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full p-2 hover:bg-[#78D1E2] text-white rounded-md bg-primary-teal">
+                Update
+              </button>
+              {isLoading && <Loader />}
+            </form>
           </div>
-          <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium">
-              Email
-            </label>
-            <input
-              type="email"
-              value={email}
-              placeholder="Your email"
-              autoComplete="off"
-              name="email"
-              className="mt-1 p-2 w-full border rounded-md"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium">
-              Password
-            </label>
-            <input
-              type="password"
-              value={password}
-              placeholder="Password"
-              name="password"
-              className="mt-1 p-2 w-full border rounded-md"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="confirmPassword"
-              className="block text-sm font-medium">
-              Confirm password
-            </label>
-            <input
-              type="password"
-              value={confirmPassword}
-              placeholder="Confirm password"
-              name="confirmPassword"
-              className="mt-1 p-2 w-full border rounded-md"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full p-2 hover:bg-[#78D1E2] text-white rounded-md bg-primary-teal">
-            Update
-          </button>
-          {isLoading && <Loader />}
-        </form>
-      </div>
+        </div>
+      </InnerLayout>
     </div>
   );
 };
