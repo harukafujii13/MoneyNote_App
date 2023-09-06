@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 const User = require('../models/user.modal');
 const generateToken = require('../utils/generateToken');
 
+// Auth user & get token
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -9,7 +10,8 @@ const authUser = asyncHandler(async (req, res) => {
 
   if (user && (await user.matchPassword(password))) {
     generateToken(res, user._id);
-    res.status(201).json({
+
+    res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
@@ -20,10 +22,11 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
+// Register a new user
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
-  const userExists = await User.findOne({ email: email });
+  const userExists = await User.findOne({ email });
 
   if (userExists) {
     res.status(400);
@@ -38,6 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (user) {
     generateToken(res, user._id);
+
     res.status(201).json({
       _id: user._id,
       name: user.name,
@@ -49,24 +53,32 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-const logoutUser = asyncHandler(async (req, res) => {
+// Logout
+const logoutUser = (req, res) => {
   res.cookie('jwt', '', {
     httpOnly: true,
     expires: new Date(0),
   });
-  res.status(200).json({ message: 'User logged out' });
-});
+  res.status(200).json({ message: 'Logged out successfully!' });
+};
 
+// Get user profile
 const getUserProfile = asyncHandler(async (req, res) => {
-  const user = {
-    id_: req.user._id,
-    name: req.user.name,
-    email: req.user.email,
-  };
+  const user = await User.findById(req.user._id);
 
-  res.status(200).json(user);
+  if (user) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
 });
 
+// Update user profile
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
@@ -80,7 +92,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     const updatedUser = await user.save();
 
-    res.status(200).json({
+    res.json({
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,

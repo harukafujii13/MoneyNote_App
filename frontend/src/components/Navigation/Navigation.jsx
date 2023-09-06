@@ -1,7 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { BiUserCircle } from 'react-icons/bi';
 import { MdOutlineClose } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLogoutMutation } from '../../slices/usersApislice';
+import { logout } from '../../slices/authSlice';
 
 const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -18,6 +21,23 @@ const Navigation = () => {
 
   const closeMenu = () => {
     setShowMenu(false);
+  };
+
+  const { useInfo } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [logoutApiCall] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate('/login');
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const activeStyle = 'text-[#1F7A8C]';
@@ -56,7 +76,14 @@ const Navigation = () => {
               </NavLink>
             </li>
             <li>
-              <p>Sign Out</p>
+              <NavLink
+                to="/profile"
+                className={isActive('/profile') ? 'text-[#1F7A8C]' : ''}>
+                Profile
+              </NavLink>
+            </li>
+            <li>
+              <div onClick={logoutHandler}>Sign Out</div>
             </li>
           </ul>
         </div>
@@ -104,8 +131,14 @@ const Navigation = () => {
                 onClick={closeMenu}>
                 <li>Expenses</li>
               </NavLink>
-              <li onClick={closeMenu}>
-                <p>Sign Out</p>
+              <NavLink
+                to="/profile"
+                className={isActive('/profile') ? activeStyle : nonActiveStyle}
+                onClick={closeMenu}>
+                <li>Profile</li>
+              </NavLink>
+              <li>
+                <div onClick={logoutHandler}>Sign Out</div>
               </li>
             </ul>
           </div>

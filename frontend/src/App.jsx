@@ -8,10 +8,15 @@ import HomePage from './pages/HomePage/HomePage';
 import IncomePage from './pages/IncomePage/IncomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 function ProtectedLayout() {
   return (
     <MainLayout>
+      <ToastContainer />
       <Navigation />
       <main className="flex-1 bg-opacity-75 bg-white border-3 border-white backdrop-blur-4.5 rounded-2xl overflow-auto">
         <Outlet />
@@ -54,6 +59,14 @@ function App() {
               path="expense"
               element={<ExpensePage />}
             />
+            <Route
+              path=""
+              element={<PrivateRoute />}>
+              <Route
+                path="profile"
+                element={<ProfilePage />}
+              />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

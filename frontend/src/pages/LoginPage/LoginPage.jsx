@@ -1,18 +1,38 @@
 import React from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLoginMutation } from '../../slices/usersApislice';
+import { setCredentials } from '../../slices/authSlice';
+import { toast } from 'react-toastify';
+import Loader from '../../components/Loader/Loader';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [login, { isLoading }] = useLoginMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/home');
+    }
+  }, [navigate, userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log('submit');
+    try {
+      const res = await login({ email, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      navigate('/home');
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
   };
 
   return (
@@ -28,6 +48,7 @@ function LoginPage() {
             </label>
             <input
               type="email"
+              value={email}
               placeholder="Enter email"
               autoComplete="off"
               name="email"
@@ -43,6 +64,7 @@ function LoginPage() {
             </label>
             <input
               type="password"
+              value={password}
               placeholder="Enter password"
               name="password"
               className="mt-1 p-2 w-full border rounded-md"
@@ -54,7 +76,9 @@ function LoginPage() {
             className="w-full p-2 hover:bg-[#78D1E2] text-white rounded-md bg-primary-teal">
             Login
           </button>
+          {isLoading && <Loader />}
         </form>
+
         <div className="text-center mt-4">
           <p className="text-sm">Don't have an account?</p>
           <Link
