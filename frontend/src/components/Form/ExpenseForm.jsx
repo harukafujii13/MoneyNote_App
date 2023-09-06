@@ -7,11 +7,12 @@ import { plus } from '../../utils/Icons';
 
 const ExpenseForm = ({ setShowModal, isEditMode, formdata }) => {
   const { addExpense, error, setError, editExpense } = useGlobalContext();
+
   console.log('//////', formdata);
 
   const [inputState, setInputState] = useState({
     title: formdata?.title ?? '',
-    amount: Number(formdata?.amount) ?? 0,
+    amount: formdata?.amount ? Number(formdata.amount) : 0,
     date: new Date(formdata?.date ?? new Date()),
     category: formdata?.category ?? '',
     description: formdata?.description ?? '',
