@@ -83,7 +83,11 @@ const Navigation = () => {
               </NavLink>
             </li>
             <li>
-              <div onClick={logoutHandler}>Sign Out</div>
+              <div
+                onClick={logoutHandler}
+                className="hover:text-[#1F7A8C]">
+                Sign Out
+              </div>
             </li>
           </ul>
         </div>
@@ -138,7 +142,11 @@ const Navigation = () => {
                 <li>Profile</li>
               </NavLink>
               <li>
-                <div onClick={logoutHandler}>Sign Out</div>
+                <div
+                  className="hover:text-[#1F7A8C]"
+                  onClick={logoutHandler}>
+                  Sign Out
+                </div>
               </li>
             </ul>
           </div>
