@@ -13,6 +13,17 @@ const calculateTotalAmount = (transactions) => {
   );
 };
 
+// const calculateTotalAmount = (transactions) => {
+//   return transactions?.reduce((total, transaction) => {
+//     if (typeof transaction.amount === 'number') {
+//       return total + transaction.amount;
+//     } else {
+//       console.error('Non-numeric amount found:', transaction.amount);
+//       return total;
+//     }
+//   }, 0);
+// };
+
 export const GlobalProvider = ({ children }) => {
   const [incomes, setIncomes] = useState([]);
   const [expenses, setExpenses] = useState([]);
@@ -113,9 +124,11 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const addExpense = async (expense) => {
-    await axios.post(`${BASE_URL}add-expense`, expense).catch((err) => {
-      setError(err.response.data.message);
-    });
+    await axios
+      .post(`${BASE_URL}add-expense`, expense, { withCredentials: true })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
     getExpenses();
   };
 
@@ -125,14 +138,21 @@ export const GlobalProvider = ({ children }) => {
   // };
 
   const getExpenses = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}get-expenses`, {
-        withCredentials: true,
+    const token = localStorage.getItem('token');
+    const config = {
+      withCredentials: true,
+    };
+    console.log({ config });
+
+    await axios
+      .get(`${BASE_URL}get-expenses`, config)
+      .then((response) => {
+        console.log({ resp: response.data });
+        setExpenses(response.data);
+      })
+      .catch((error) => {
+        setError(error.message);
       });
-      setExpenses(response.data.expenses);
-    } catch (error) {
-      setError(error.response?.data?.message || error.message);
-    }
   };
 
   //Edit and Update Expense
