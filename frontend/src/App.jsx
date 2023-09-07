@@ -16,7 +16,6 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 function ProtectedLayout() {
   return (
     <MainLayout>
-      <ToastContainer />
       <Navigation />
       <main className="flex-1 bg-opacity-75 bg-white border-3 border-white backdrop-blur-4.5 rounded-2xl overflow-auto">
         <Outlet />
@@ -31,6 +30,7 @@ function App() {
   return (
     <div className="h-screen bg-primary-columbiaBlue text-primary-gunmetal font-nunito">
       <BrowserRouter>
+        <ToastContainer />
         <Routes>
           <Route
             path="/register"
