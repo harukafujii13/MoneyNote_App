@@ -4,6 +4,7 @@ exports.addIncome = async (req, res) => {
   const { title, amount, category, description, date } = req.body;
 
   const income = IncomeSchema({
+    user: req.user._id,
     title,
     amount,
     category,
@@ -31,7 +32,9 @@ exports.addIncome = async (req, res) => {
 
 exports.getIncomes = async (req, res) => {
   try {
-    const incomes = await IncomeSchema.find().sort({ createdAt: -1 });
+    const incomes = await IncomeSchema.find({ user: req.user._id }).sort({
+      createdAt: -1,
+    });
     res.status(200).json(incomes);
   } catch (error) {
     res.status(500).json({ message: 'servaer Error' });

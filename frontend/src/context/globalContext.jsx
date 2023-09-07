@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8000/api/v1/';
+// const BASE_URL = 'http://localhost:8000/api/v1/';
+const BASE_URL = '/api/v1/';
 
 const GlobalContext = React.createContext();
 
 const calculateTotalAmount = (transactions) => {
-  return transactions.reduce(
+  return transactions?.reduce(
     (total, transaction) => total + transaction.amount,
     0
   );
@@ -17,17 +18,46 @@ export const GlobalProvider = ({ children }) => {
   const [expenses, setExpenses] = useState([]);
   const [error, setError] = useState(null);
 
+  // const addIncome = async (income) => {
+  //   await axios.post(`${BASE_URL}add-income`, income).catch((err) => {
+  //     setError(err.response.data.message);
+  //   });
+  //   getIncomes();
+  // };
+
   const addIncome = async (income) => {
-    await axios.post(`${BASE_URL}add-income`, income).catch((err) => {
-      setError(err.response.data.message);
-    });
+    await axios
+      .post(`${BASE_URL}add-income`, income, { withCredentials: true })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
     getIncomes();
   };
 
+  //withCredentials: The function sets withCredentials: true to include credentials
+  //like cookies, authorization headers, or TLS client certificates in the request.
+
+  // const getIncomes = async () => {
+  //   await axios
+  //     .get(`${BASE_URL}get-incomes`)
+  //     .then((response) => {
+  //       setIncomes(response.data);
+  //     })
+  //     .catch((error) => {
+  //       setError(error.message);
+  //     });
+  // };
+
   const getIncomes = async () => {
+    const token = localStorage.getItem('token');
+    const config = {
+      withCredentials: true,
+    };
+    console.log({ config });
     await axios
-      .get(`${BASE_URL}get-incomes`)
+      .get(`${BASE_URL}get-incomes`, config)
       .then((response) => {
+        console.log({ resp: response.data });
         setIncomes(response.data);
       })
       .catch((error) => {
@@ -89,9 +119,20 @@ export const GlobalProvider = ({ children }) => {
     getExpenses();
   };
 
+  // const getExpenses = async () => {
+  //   const response = await axios.get(`${BASE_URL}get-expenses`);
+  //   setExpenses(response.data);
+  // };
+
   const getExpenses = async () => {
-    const response = await axios.get(`${BASE_URL}get-expenses`);
-    setExpenses(response.data);
+    try {
+      const response = await axios.get(`${BASE_URL}get-expenses`, {
+        withCredentials: true,
+      });
+      setExpenses(response.data.expenses);
+    } catch (error) {
+      setError(error.response?.data?.message || error.message);
+    }
   };
 
   //Edit and Update Expense
@@ -142,6 +183,7 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const totalBalance = () => {
+    console.log('Total Balance: ', totalIncome() - totalExpenses());
     return totalIncome() - totalExpenses();
   };
 

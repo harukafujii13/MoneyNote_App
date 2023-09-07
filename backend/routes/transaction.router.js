@@ -14,16 +14,17 @@ const {
   getExpenseById,
 } = require('../controllers/expense.controller');
 const router = require('express').Router();
+const { protect } = require('../middleware/authMiddleware');
 
 router
-  .post('/add-income', addIncome)
-  .get('/get-incomes', getIncomes)
+  .post('/add-income', protect, addIncome)
+  .get('/get-incomes', protect, getIncomes)
   .delete('/delete-income/:id', deleteIncome)
   .put('/edit-income/:id', editIncome)
   .get('/get-income/:id', getIncomeById)
 
-  .post('/add-expense', addExpense)
-  .get('/get-expenses', getExpense)
+  .post('/add-expense', protect, addExpense)
+  .get('/get-expenses', protect, getExpense)
   .delete('/delete-expense/:id', deleteExpense)
   .put('/edit-expense/:id', editExpense)
   .get('/get-expense/:id', getExpenseById);

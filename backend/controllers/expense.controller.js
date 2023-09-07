@@ -4,6 +4,7 @@ exports.addExpense = async (req, res) => {
   const { title, amount, category, description, date } = req.body;
 
   const expense = ExpenseSchema({
+    user: req.user._id,
     title,
     amount,
     category,
@@ -32,7 +33,9 @@ exports.addExpense = async (req, res) => {
 
 exports.getExpense = async (req, res) => {
   try {
-    const expenses = await ExpenseSchema.find().sort({ createdAt: -1 });
+    const expenses = await ExpenseSchema.find({ user: req.user._id }).sort({
+      createdAt: -1,
+    });
     res.status(200).json(expenses);
   } catch (error) {
     res.status(500).json({ message: 'servaer Error' });
