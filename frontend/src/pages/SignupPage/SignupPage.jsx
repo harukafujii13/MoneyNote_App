@@ -22,22 +22,48 @@ const SignupPage = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/home');
+      navigate('/login'); //?
     }
   }, [navigate, userInfo]);
+
+  // const submitHandler = async (e) => {
+  //   e.preventDefault();
+
+  //   if (password !== confirmPassword) {
+  //     toast.error('Password do not match');
+  //   } else {
+  //     try {
+  //       const res = await register({ name, email, password }).unwrap();
+  //       dispatch(setCredentials({ ...res }));
+  //       navigate('/login');
+  //     } catch (err) {
+  //       toast.error(err?.data?.message || err.error);
+  //     }
+  //   }
+  // };
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast.error('Password do not match');
+      toast.error(
+        'Please ensure your password and confirmation password match.'
+      );
     } else {
       try {
         const res = await register({ name, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
-        navigate('/home');
+        toast.success('Registration successful!');
+        navigate('/login');
       } catch (err) {
-        toast.error(err?.data?.message || err.error);
+        if (err.status === 500) {
+          toast.error('Server error. Please try again later.');
+        } else {
+          toast.error(
+            err?.data?.message ||
+              'An error occurred during registration. Please try again.'
+          );
+        }
       }
     }
   };

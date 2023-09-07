@@ -27,22 +27,24 @@ const ProfilePage = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
-    } else {
-      try {
-        const res = await updateProfile({
-          _id: userInfo._id,
-          name,
-          email,
-          password,
-        }).unwrap();
-        console.log(res);
-        dispatch(setCredentials(res));
-        toast.success('Profile updated successfully!');
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+    if (password || confirmPassword) {
+      if (password !== confirmPassword) {
+        toast.error('Passwords do not match');
+        return;
       }
+    }
+
+    try {
+      const res = await updateProfile({
+        _id: userInfo._id,
+        name,
+        email,
+        password,
+      }).unwrap();
+      dispatch(setCredentials(res));
+      toast.success('Profile updated successfully!');
+    } catch (err) {
+      toast.error(err?.data?.message || 'An error occurred during the update.');
     }
   };
 
