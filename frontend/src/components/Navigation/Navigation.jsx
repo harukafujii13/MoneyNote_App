@@ -23,7 +23,8 @@ const Navigation = () => {
     setShowMenu(false);
   };
 
-  const { useInfo } = useSelector((state) => state.auth);
+  const { userInfo } = useSelector((state) => state.auth);
+  // console.log(userInfo);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const Navigation = () => {
           <p className="text-7xl mr-2">
             <BiUserCircle />
           </p>
-          <div className="text-2xl font-bold">Haruka</div>
+          <div className="text-2xl font-bold">{userInfo?.name}</div>
         </div>
         <div className="flex justify-center">
           <ul className="flex flex-col h-[30rem] gap-5 text-xl font-semibold justify-center">
