@@ -64,11 +64,11 @@ export const GlobalProvider = ({ children }) => {
     const config = {
       withCredentials: true,
     };
-    console.log({ config });
+    // console.log({ config });
     await axios
       .get(`${BASE_URL}get-incomes`, config)
       .then((response) => {
-        console.log({ resp: response.data });
+        // console.log({ resp: response.data });
         setIncomes(response.data);
       })
       .catch((error) => {
@@ -142,12 +142,12 @@ export const GlobalProvider = ({ children }) => {
     const config = {
       withCredentials: true,
     };
-    console.log({ config });
+    // console.log({ config });
 
     await axios
       .get(`${BASE_URL}get-expenses`, config)
       .then((response) => {
-        console.log({ resp: response.data });
+        // console.log({ resp: response.data });
         setExpenses(response.data);
       })
       .catch((error) => {
@@ -203,7 +203,7 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const totalBalance = () => {
-    console.log('Total Balance: ', totalIncome() - totalExpenses());
+    // console.log('Total Balance: ', totalIncome() - totalExpenses());
     return totalIncome() - totalExpenses();
   };
 

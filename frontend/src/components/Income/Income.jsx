@@ -76,7 +76,7 @@ const Incomes = () => {
               const { _id, title, amount, date, category, description, type } =
                 income;
 
-              console.log(amount);
+              // console.log(amount);
               return (
                 <CardIncomeItem
                   key={_id}

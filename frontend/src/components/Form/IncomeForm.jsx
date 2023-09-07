@@ -8,7 +8,7 @@ import { plus } from '../../utils/Icons';
 const IncomeForm = ({ setShowModal, isEditMode, formdata }) => {
   const { addIncome, editIncome, error, setError } = useGlobalContext();
 
-  console.log('//////formdata', formdata);
+  // console.log('//////formdata', formdata);
 
   const [inputState, setInputState] = useState({
     title: formdata?.title ?? '',

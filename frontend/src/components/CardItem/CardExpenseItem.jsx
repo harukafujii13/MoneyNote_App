@@ -104,7 +104,7 @@ const CardExpenseItem = ({
                   hColor="hover:bg-[#78D1E2]"
                   onClick={async () => {
                     const data = await getExpensesById(id);
-                    console.log(data);
+                    // console.log(data);
                     setFormdata(data);
                     setIsEditMode(true);
                     setShowModal(true);
