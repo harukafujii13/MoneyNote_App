@@ -12,5 +12,3 @@ export default defineConfig({
     },
   },
 });
-
-// console.log('Backend URL:', process.env.BACKEND_URL);
