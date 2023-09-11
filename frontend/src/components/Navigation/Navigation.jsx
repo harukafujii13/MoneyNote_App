@@ -48,10 +48,10 @@ const Navigation = () => {
     <div>
       <div className="hidden md:flex flex-col w-56 h-full p-8 bg-opacity-75 bg-white border-3 border-white backdrop-blur-lg rounded-xl justify-start items-center font-nunito">
         <div className="flex flex-row justify-center items-center">
-          <p className="text-7xl mr-2">
+          <p className="text-5xl mr-2">
             <BiUserCircle />
           </p>
-          <div className="text-2xl font-bold">{userInfo?.name}</div>
+          <div className="text-xl font-bold">{userInfo?.name}</div>
         </div>
         <div className="flex justify-center">
           <ul className="flex flex-col h-[30rem] gap-5 text-xl font-semibold justify-center">
