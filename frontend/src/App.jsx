@@ -47,24 +47,25 @@ function App() {
               index
               element={<HomePage />}
             />
-            <Route
-              path="home"
-              element={<HomePage />}
-            />
-            <Route
-              path="income"
-              element={<IncomePage />}
-            />
-            <Route
-              path="expense"
-              element={<ExpensePage />}
-            />
+
             <Route
               path=""
               element={<PrivateRoute />}>
               <Route
                 path="profile"
                 element={<ProfilePage />}
+              />
+              <Route
+                path="home"
+                element={<HomePage />}
+              />
+              <Route
+                path="income"
+                element={<IncomePage />}
+              />
+              <Route
+                path="expense"
+                element={<ExpensePage />}
               />
             </Route>
           </Route>
