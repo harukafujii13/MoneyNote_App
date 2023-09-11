@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 // const baseQuery = fetchBaseQuery({ baseUrl: '' });
 const baseQuery = fetchBaseQuery({
   // baseUrl: '',
-  baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api/v1/`,
+  baseUrl: 'https://moneynoteapp-production.up.railway.app',
   credentials: 'include',
 });
 
