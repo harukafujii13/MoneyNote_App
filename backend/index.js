@@ -22,7 +22,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: true,
+    origin: 'https://money-note-app.vercel.app',
     credentials: true,
   })
 );
