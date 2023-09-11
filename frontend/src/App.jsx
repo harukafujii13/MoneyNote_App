@@ -43,10 +43,10 @@ function App() {
           <Route
             path="/"
             element={<ProtectedLayout />}>
-            <Route
+            {/* <Route
               index
               element={<HomePage />}
-            />
+            /> */}
 
             <Route
               path=""
