@@ -14,3 +14,7 @@ const generateToken = (res, userId) => {
 };
 
 module.exports = generateToken;
+
+//Setting a cookie's httpOnly flag to true means that the cookie cannot be accessed through client-side scripts.
+//Setting it to false, you're allowing client-side scripts to access the cookie,
+//which generally makes it easier to work with the cookie during development
