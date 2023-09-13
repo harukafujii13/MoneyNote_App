@@ -22,7 +22,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: 'https://money-note-app.vercel.app',
+    origin: 'https://money-note-app-one.vercel.app',
     credentials: true,
   })
 );
@@ -41,7 +41,7 @@ readdirSync('./routes').map((route) => {
   app.use('/api/v1', require('./routes/' + route));
 });
 
-// For production, serve frontend static files
+// // For production, serve frontend static files
 // if (process.env.NODE_ENV === 'production') {
 //   const __dirname = path.resolve();
 //   app.use(express.static(path.join(__dirname, '/frontend/dist')));
