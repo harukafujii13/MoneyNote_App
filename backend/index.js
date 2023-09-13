@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 });
 
 // Dynamically import other routes
-readdirSync('./routes').map((route) => {
+readdirSync(path.resolve(process.cwd(), 'routes')).map((route) => {
   app.use('/api/v1', require('./routes/' + route));
 });
 
