@@ -37,7 +37,8 @@ app.get('/', (req, res) => {
 });
 
 // Dynamically import other routes
-readdirSync(path.resolve(process.cwd(), 'routes')).map((route) => {
+const routeFolderPath = path.join(process.cwd(), 'routes');
+readdirSync(routeFolderPath).map((route) => {
   app.use('/api/v1', require('./routes/' + route));
 });
 
