@@ -22,7 +22,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: 'https://money-note-app-one.vercel.app',
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
@@ -37,7 +37,10 @@ app.get('/', (req, res) => {
 });
 
 // Dynamically import other routes
-const routeFolderPath = path.join(process.cwd(), 'backend', 'routes');
+const routeFolderPath =
+  process.env.NODE_ENV === 'production'
+    ? path.join(process.cwd(), 'backend', 'routes')
+    : path.join(process.cwd(), 'routes');
 readdirSync(routeFolderPath).map((route) => {
   app.use('/api/v1', require('./routes/' + route));
 });
