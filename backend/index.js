@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 });
 
 // Dynamically import other routes
-const routeFolderPath = path.join(process.cwd(), 'routes');
+const routeFolderPath = path.join(process.cwd(), 'backend', 'routes');
 readdirSync(routeFolderPath).map((route) => {
   app.use('/api/v1', require('./routes/' + route));
 });
