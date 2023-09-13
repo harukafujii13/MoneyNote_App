@@ -32,6 +32,10 @@ app.use(cookieParser());
 // User Routes
 app.use('/api/users', userRoutes);
 
+app.get('/', (req, res) => {
+  res.send('API is running....');
+});
+
 // Dynamically import other routes
 readdirSync('./routes').map((route) => {
   app.use('/api/v1', require('./routes/' + route));
