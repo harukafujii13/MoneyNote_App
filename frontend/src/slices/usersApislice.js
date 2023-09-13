@@ -1,6 +1,5 @@
 import { apiSlice } from './apiSlice';
 
-//test
 const USER_URL = `${import.meta.env.VITE_BACKEND_URL}/api/users`;
 
 export const usersApiSlice = apiSlice.injectEndpoints({
